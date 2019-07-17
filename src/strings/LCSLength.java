@@ -3,7 +3,7 @@ package strings;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LongestCommonSubsequence {
+public class LCSLength {
 
     /**
      * Worst case happens when there is no common subsequence present in strings
