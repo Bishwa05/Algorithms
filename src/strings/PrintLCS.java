@@ -26,12 +26,18 @@ public class PrintLCS {
 
 
     public static List<String> LCS(String X, String Y, int m, int n, int [][]T) {
-        if(m ==0 || n ==0)
+        if(m ==0 || n ==0) {
+            // create a List with 1 empty string and return
             return new ArrayList(Collections.nCopies(1, ""));
+        }
 
         if(X.charAt(m-1)== Y.charAt(n-1)){
+            // ignore last characters of X and Y and find all LCS of
+            // substring X[0..m-2], Y[0..n-2] and store it in a List
             List<String> lcs = LCS(X,Y,m-1,n-1,T);
 
+            // append current character X[m - 1] or Y[n - 1]
+            // to all LCS of substring X[0..m-2] and Y[0..n-2]
             for (int i = 0; i < lcs.size(); i++) {
                 lcs.set(i, lcs.get(i) + (X.charAt(m - 1)));
             }
