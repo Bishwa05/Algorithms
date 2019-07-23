@@ -1,9 +1,5 @@
 package array;
 
-import javax.jnlp.IntegrationService;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Problem Statement
  * A child likes to build mud walls by placing mud between sticks positioned on a number line.
@@ -11,7 +7,7 @@ import java.util.List;
  * The height of mud in a segment cannot exceed 1 unit above an adjacent stick or mud segment.
  * Given the placement of a number of sticks and their heights, determine the maximum height segment of mud that can be built. If no mud segment can be built, return 0.
  *
- * For example, there are n = 3 sticks at stickPositions = [1, 2, 4, 7]
+ * For example, there are n = 3 sticks at stickPositions = [1, 2, 4, 8]
  * with stickHeights = [4, 5, 7, 11].
  * There is no space between the first two sticks, so there is no cell for mud.
  * Between positions 2 and 4, there is one cell. Heights of the surrounding sticks are
@@ -36,7 +32,8 @@ import java.util.List;
  *
 
  * Function Description
- * Complete the function maxHeight in the editor below. The function must return an integer, the maximum height mud segment that can be built.
+ * Complete the function maxHeight in the editor below. The function must return an integer,
+ * the maximum height mud segment that can be built.
  *
  * maxHeight has the following parameter(s):
  * stickPositions[stickPositions[0],…stickPositions[n-1]]: an array of integers
@@ -85,31 +82,30 @@ public class MudWalls {
     public static int getMaxWallHeight(int pos [], int height[]){
 
         int h = 0;
+        int max =0;
 
         for(int i=0; i< pos.length-1; i++){
             //gap found (2nd pos)
             if(pos[i]< pos[i+1]-1) {
                 //height diff (4-3 =1)
-                int minheight = Math.min(height[i+1],height[i]);
-                int max = Math.max(height[i+1],height[i]);
+                int heightDiff = (height[i + 1] > height[i]) ? height[i + 1] - height[i] : height[i] - height[i + 1];
+                int posDiff = pos[i + 1] - pos[i];
 
+                int localMax = 0;
+                if (posDiff > heightDiff) {
+                    int low = Math.max(height[i + 1], height[i]) + 1;
+                    int remainingGap = posDiff - heightDiff - 1;
+                    localMax = low + remainingGap / 2;
+                } else {
+                    localMax = Math.min(height[i + 1], height[i]) + posDiff;
+                }
 
-
-                int posDiff = (pos[i+1]>pos[i])?pos[i+1]-pos[i]: pos[i]-pos[i+1];
-                int heightDiff = (height[i+1]>height[i])?height[i+1]-height[i]: height[i]-height[i+1];
-
-                if(posDiff ==1)
-                    h = minheight+1;
-
-
-            } else {
-                if(pos[i]>h)
-                    h = pos[i];
+                max = Math.max(max, localMax);
             }
         }
 
 
-        return h;
+        return max;
     }
     public static void main(String arg[]) {
 
@@ -117,5 +113,10 @@ public class MudWalls {
         int height[] = {4,3,3};
 
         System.out.println(getMaxWallHeight(position,height));
+
+        int position1[] = {1, 2, 4, 8};
+        int height1[] = {4, 5, 7, 11};
+
+        System.out.println(getMaxWallHeight(position1,height1));
     }
 }
