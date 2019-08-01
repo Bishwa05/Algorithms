@@ -46,6 +46,11 @@ import java.util.Scanner;
  * 0
  * 4
  * 2
+Submit only below 2 lines.
+
+ import java.util.*;
+ public class solution {public static void p(char[][] a,int r,int c){int z=0;for(int i=0; i<r;i++)for(int j=0;j<c;j++)if('x'==a[i][j])z++;System.out.println(z);}public static void h(char[][] a,int r,int c,int i,int j){if(j+1<c&&a[i][j+1]=='x')a[i][j+1]='0';if(j-1>=0 && a[i][j-1]=='x')a[i][j-1]='0';if(i+1<r && a[i+1][j]=='x')a[i+1][j]='0';if(i-1>=0 && a[i-1][j]=='x')a[i-1][j]='0';}public static void d(char[][] a,int r,int c,int i,int j){if(i-1 >=0&&j-1>=0&&a[i-1][j-1] =='x') a[i-1][j-1]='0';if(i-1>=0 && j+1<c&&a[i-1][j+1]=='x')a[i-1][j+1]='0';if(i+1<r&&j+1<c&&a[i+1][j+1]=='x')a[i+1][j+1]='0';if(i+1<r&&j-1>=0&&a[i+1][j-1]=='x')a[i+1][j-1]='0';}public static void main(String o[]){Scanner sc = new Scanner(System.in);int t=sc.nextInt();for (int p=0;p<t;p++){int r=sc.nextInt();int c=sc.nextInt();char[][] a=new char[r][c];for(int i=0;i<r;i++){String l=sc.next();a[i]=l.toCharArray();}for(int i=0;i<r;i++){for(int j=0;j<c;j++){if('r'==a[i][j])d(a,r,c,i,j);if('b'==a[i][j]||'r'==a[i][j])h(a,r,c,i,j);}}p(a,r,c);}}}
+
  */
 public class PillsVsGerms {
 
