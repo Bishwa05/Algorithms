@@ -42,5 +42,9 @@ public class AllSubsequencesProductLessThanK
         int arr1[] = {1,2,3,4};
         int k =10;
         System.out.println(computeProduct(arr1, k));
+
+        int arr2[] ={4, 8, 7, 2};
+        int k2 = 50;
+        System.out.println(computeProduct(arr2, k2));
     }
 }
