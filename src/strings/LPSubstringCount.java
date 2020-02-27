@@ -2,7 +2,7 @@ package strings;
 
 
 // ABBACDEEDC --6
-public class LPSubstring {
+public class LPSubstringCount {
     public static int longestPalSubStr(String X) {
         int n = X.length();
 
