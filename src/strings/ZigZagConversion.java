@@ -21,6 +21,8 @@ import java.util.Map;
  * Y A   H R
  * P     I
  *
+ * Create as many entries in hashmap as no of rows.
+ * The zigzag order is maintained by 2 counters here pos and increment.
  */
 
 public class ZigZagConversion {
