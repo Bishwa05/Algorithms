@@ -21,7 +21,7 @@ public class IntegerToRoman {
         StringBuilder sb = new StringBuilder();
 
         for(int i=0; i< arabics.length; i++){
-            while(num-arabics[i] >0) {
+            while(num-arabics[i] >=0) {
                 sb.append(roman[i]);
                 num = num -arabics[i];
             }
@@ -33,7 +33,8 @@ public class IntegerToRoman {
 
     public static void main(String arg[]) {
 
-        int num =1994;//MCMXCIII
+        //int num =1994;//MCMXCIII
+        int num =3;
         System.out.println(intToRoman(num));
 
     }
