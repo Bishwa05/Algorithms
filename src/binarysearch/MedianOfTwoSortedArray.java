@@ -3,11 +3,18 @@ package binarysearch;
 /**
  * Time complexity should be log(m+n)
  *
+ *
+ *
  * A: 1,4,5
  * B: 2, 3
+ *
+ * Find the partition in array A before which all the elements come in left side
+ *
+ * [1]      [4 5]
+ * [2 3]    []
  */
 public class MedianOfTwoSortedArray {
-    public static int findMedianSortedArray(int []A, int []B){
+    public static double findMedianSortedArray(int []A, int []B){
         int m = B.length;
         int n = A.length;
 
@@ -29,7 +36,7 @@ public class MedianOfTwoSortedArray {
         int r = n;
 
         int totalOnLeft = (n+m+1)/2;
-
+        //After which partition the ans is going to be.
         while(l<=r){
             int mid = l+ (r-l)/2;
             int bLeftCount = totalOnLeft - mid;
@@ -70,7 +77,7 @@ public class MedianOfTwoSortedArray {
             } else{
                 if((n+m)%2 ==0){
                     return (Integer.max(aPartitionLeft, bPartitionLeft) +
-                            Integer.min(aPartitionRight, bPartitionRight))/2;
+                            Integer.min(aPartitionRight, bPartitionRight))/2.0;
                 }
                 return Math.max(aPartitionLeft, bPartitionLeft);
             }
