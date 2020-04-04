@@ -90,6 +90,48 @@ public class RotateMatrix {
         return mat;
     }
 
+    /**
+     *
+     * Anti clockwise
+     * int x = mat[0][0];
+     * mat[0][0] = mat[0][2];
+     * mat[0][2] = mat[2][2];
+     * mat[2][2] = mat[2][0];
+     * mat[2][0]  = x;
+     *
+     * //        int x = mat[0][1];
+     * //        mat[0][1] = mat[1][0];
+     * //        mat[1][0] = mat[2][1];
+     * //        mat[2][1] = mat[1][2];
+     * //        mat[1][2]  = x;
+     *
+     *
+     *
+     *
+     * @param mat
+     * @return
+     */
+
+    public static int[][] rotateMatrixBy90Degree(int mat[][]) {
+
+        int rows = mat.length;
+        int cols = mat[0].length;
+
+        for(int i =0; i< cols/2; i++) {
+            for(int j =i;  j<rows-i-1; j++) {
+                int temp = mat[i][j]; //  temp = mat[0][0]
+                mat[i][j] = mat[cols - 1 - j][i]; // mat[0][0] = mat[2][0]
+                mat[cols - 1 - j][i] = mat[cols - 1 - i][cols - 1 - j]; //mat[2][0] = mat[2][2]
+                mat[cols - 1 - i][cols - 1 - j] = mat[j][cols - 1 - i]; // mat[2][2] = mat[0][2]
+                mat[j][cols - 1 - i] = temp; // mat[0][2] = temp
+            }
+
+        }
+
+
+        return mat;
+    }
+
     public static void main(String args[]) {
         int mat[][] ={
                 {1,2,3,4},
@@ -119,7 +161,9 @@ public class RotateMatrix {
 
         //int rotatedMat[][] = rotatedMatrixBy1Element(mat2);
 
-        int rotatedMat[][] = rotatedMatrix1ElementByInSubSquare(mat1);
+        // int rotatedMat[][] = rotatedMatrix1ElementByInSubSquare(mat1);
+
+        int rotatedMat[][] = rotateMatrixBy90Degree(mat);
 
         for(int i =0; i <rotatedMat.length; i++){
             for(int j =0; j< rotatedMat[0].length; j++){
