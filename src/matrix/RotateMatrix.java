@@ -12,7 +12,7 @@ public class RotateMatrix {
         int leftBottomCornor =  mat[rowEnd-1][colStart];
 
 
-        if(rowEnd-rowStart==2 || rowEnd-rowStart==3) {
+        if(rowEnd-rowStart==2) {
             mat[rowStart][colEnd-1] = mat[rowStart][colStart];
             mat[rowEnd-1][colEnd-1] = rightTopCornor;
             mat[rowEnd-1][colStart] = rightBottomCornor;
@@ -98,9 +98,28 @@ public class RotateMatrix {
                 {13,14,15,16}
         };
 
-        //int rotatedMat[][] = rotatedMatrixBy1Element(mat);
 
-        int rotatedMat[][] = rotatedMatrix1ElementByInSubSquare(mat);
+        int mat1[][] ={
+                {1,2,3,4,5,6,7,8,9},
+                {10,11,12,13,14,15,16,17,18},
+                {19,20,21,22,23,24,25,26,27},
+                {28,29,30,31,32,33,34,35,36},
+                {37,38,39,40,41,42,43,44,45},
+                {46,47,48,49,50,51,52,53,54},
+                {55,56,57,58,59,60,61,62,63},
+                {64,65,66,67,68,69,70,71,72},
+                {73,74,75,76,77,78,79,80,81}
+        };
+
+        int mat2[][] ={
+                {1,2,3},
+                {4,5,6},
+                {7,8,9}
+        };
+
+        //int rotatedMat[][] = rotatedMatrixBy1Element(mat2);
+
+        int rotatedMat[][] = rotatedMatrix1ElementByInSubSquare(mat1);
 
         for(int i =0; i <rotatedMat.length; i++){
             for(int j =0; j< rotatedMat[0].length; j++){
