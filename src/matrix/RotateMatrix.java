@@ -1,7 +1,7 @@
 package matrix;
 
 /**
- * Rotate a matrix clockwise by 90 degree
+ * Rotate a matrix clockwise by 1 element clockwise
  */
 public class RotateMatrix {
 
@@ -60,14 +60,33 @@ public class RotateMatrix {
         return mat;
     }
 
-    public static int[][] rotatedMatrix(int[][] mat){
+    public static int[][] rotatedMatrixBy1Element(int[][] mat){
         int rows = mat.length;
         int cols  = mat[0].length;
 
         rotateMatrixRec(mat, 0,rows, 0, cols);
 
+        return mat;
+    }
 
+    //Assuming a square matrix
+    public static int[][] rotatedMatrix1ElementByInSubSquare(int[][] mat) {
+        int rows = mat.length;
+        int cols  = mat[0].length;
 
+        int subSqrRows= (int) Math.sqrt(rows);
+        int subSqrCols = (int) Math.sqrt(cols);
+
+        for(int i =0; i<subSqrRows; i++){
+            for(int j =0; j<subSqrCols; j++){
+                int rowStart = i*subSqrRows;
+                int rowEnd = rowStart+ subSqrRows;
+                int colStart = j*subSqrCols;
+                int colEnd = colStart+ subSqrCols;
+                rotateMatrixRec(mat,rowStart,rowEnd,colStart,colEnd);
+            }
+
+        }
         return mat;
     }
 
@@ -79,7 +98,9 @@ public class RotateMatrix {
                 {13,14,15,16}
         };
 
-        int rotatedMat[][] = rotatedMatrix(mat);
+        //int rotatedMat[][] = rotatedMatrixBy1Element(mat);
+
+        int rotatedMat[][] = rotatedMatrix1ElementByInSubSquare(mat);
 
         for(int i =0; i <rotatedMat.length; i++){
             for(int j =0; j< rotatedMat[0].length; j++){
