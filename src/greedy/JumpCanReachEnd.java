@@ -25,28 +25,59 @@ package greedy;
  */
 public class JumpCanReachEnd {
 
-    public static boolean canReachEnd(int []nums, int start, int count) {
-        if((nums[start]+ start+1)>= nums.length) {
+    public static boolean canReachEnd(int []nums, int position) {
+        if(position == nums.length-1) {
             return true;
         }
 
-        if(start <nums.length && count<= nums[start])
-            return canReachEnd(nums,++start,++count);
+        int longJump = Math.min(position+nums[position],nums.length-1);
+        int nextPosition = position+1;
+        while(nextPosition<=longJump){
+            if(canReachEnd(nums,nextPosition)) return true;
+            nextPosition++;
+        }
 
         return false;
     }
+    //Backtracking approach
 
+    /**
+     * Time complexity : O(2^n)
+     * Space complexity O(n).
+     * @param nums
+     * @return boolean
+     */
     public static boolean canJump(int []nums){
-
-        if(nums[0]==0) {
+        if(nums[0]==0 && nums.length >1)
             return false;
-        }
+        return canReachEnd(nums,0);
+    }
 
-        return canReachEnd(nums,0, 1);
+    //
+
+    /**
+     * Greedy approach
+     * Time complexity: O(n)
+     * Space Complexity: O(1)
+     *
+     * @param nums
+     * @return
+     */
+    public static boolean canJump2(int []nums) {
+        int lastPos = nums.length - 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (i + nums[i] >= lastPos) {
+                lastPos = i;
+            }
+        }
+        return lastPos == 0;
     }
 
     public static void main(String arg[]) {
         int arr[] = {2,3,1,1,4};
-        System.out.println(canJump(arr));
+        //int arr[] ={3,2,1,0,4};
+
+        //int arr[] ={0};
+        System.out.println(canJump2(arr));
     }
 }
