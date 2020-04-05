@@ -1,4 +1,4 @@
-package thirtydays;
+package leetcodethirtydayschallenge;
 
 /**
  * Given an array nums, write a function to move all 0's

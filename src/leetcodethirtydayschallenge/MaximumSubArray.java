@@ -1,4 +1,4 @@
-package thirtydays;
+package leetcodethirtydayschallenge;
 
 public class MaximumSubArray {
 

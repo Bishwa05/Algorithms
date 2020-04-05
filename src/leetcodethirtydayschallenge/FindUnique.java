@@ -1,4 +1,4 @@
-package thirtydays;
+package leetcodethirtydayschallenge;
 
 /**
  * Your algorithm should have a linear runtime complexity.
