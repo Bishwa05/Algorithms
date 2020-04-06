@@ -53,8 +53,6 @@ public class JumpCanReachEnd {
         return canReachEnd(nums,0);
     }
 
-    //
-
     /**
      * Greedy approach
      * Time complexity: O(n)
