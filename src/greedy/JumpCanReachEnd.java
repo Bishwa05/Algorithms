@@ -39,9 +39,10 @@ public class JumpCanReachEnd {
 
         return false;
     }
-    //Backtracking approach
+    //
 
     /**
+     * Backtracking approach
      * Time complexity : O(2^n)
      * Space complexity O(n).
      * @param nums
