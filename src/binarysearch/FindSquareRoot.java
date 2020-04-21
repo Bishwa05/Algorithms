@@ -1,29 +1,25 @@
 package binarysearch;
 
+/**
+ * This solution is passed in interviewbit
+ */
 public class FindSquareRoot {
-    public static int findSquareRoot(int val) {
-        int result = val;
-        if(val==0 || val ==1)
-            return result;
+    public static int findSquareRoot(int A) {
+        if(A==0 || A==1) return A;
 
-        int end = val;
-        int n = end;
+        long start = 0, end = A/2 + 1;
 
-        for(int start =0; start< n; start++){
-            int mid = (start + end)/2;
-
-            int sqr = mid * mid;
-            if(sqr==val)
-                return mid;
-            if(sqr<val) {
-                result = mid;
+        while(start<=end){
+            long mid = (start+end)/2;
+            if(mid*mid ==A){
+                return (int)mid;
+            }else if(mid*mid<A){
                 start = mid+1;
+            }else {
+                end = mid-1;
             }
-            else
-                end= mid-1;
-
         }
-        return result;
+        return (int)end;
     }
 
     public static void main(String arg[]){
