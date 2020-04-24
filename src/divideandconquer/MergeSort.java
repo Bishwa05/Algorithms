@@ -17,24 +17,28 @@ public class MergeSort {
         while(i <= mid && j <= end) {
             if(arr[i] <= arr[j]) {
                 temp[k] = arr[i];
-                k += 1; i += 1;
+                k += 1;
+                i += 1;
             }
             else {
                 temp[k] = arr[j];
-                k += 1; j += 1;
+                k += 1;
+                j += 1;
             }
         }
 
         // add elements left in the first interval
         while(i <= mid) {
             temp[k] = arr[i];
-            k += 1; i += 1;
+            k += 1;
+            i += 1;
         }
 
         // add elements left in the second interval
         while(j <= end) {
             temp[k] = arr[j];
-            k += 1; j += 1;
+            k += 1;
+            j += 1;
         }
 
         // copy temp to original interval
