@@ -20,9 +20,8 @@ public class PerfectSquares {
     public static int numSquare(int n){
         int []dp = new int[n+1];
 
-        // 3 coz 2*2 = 4 which >3, and sqr 1 = 1 which is handled differently.
         for(int i =1; i<=n; i++){
-            dp[i]= 3;
+            dp[i]= Integer.MAX_VALUE;
         }
 
         for(int i=1; i<=n; i++){
