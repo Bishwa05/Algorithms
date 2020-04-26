@@ -41,8 +41,7 @@ public class PerfectSquares {
             while (size>0){
                 int currentValue=queue.poll();//get the first number
                 //iterate throught the perfect square array. and do currentNo-one of the perfect square if result leads to zero then just return the steps.
-                for (Integer i: perfectSquaresUnderNs
-                ) {
+                for (Integer i: perfectSquaresUnderNs) {
                     int result=currentValue-i;
                     if (result==0){
                         return step;
