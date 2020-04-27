@@ -1,6 +1,8 @@
 There are few points about DP.
 
 1. A problem can be solved in DP approach if we can frame a recursion tree.
+So, this implies if we can solve a problem via dfs then we can solve the same in DP.
+
 
 Finding more with different questions.
 
