@@ -8,9 +8,9 @@ package dynamic;
  */
 
 
-public class MakingChange {
+public class MakingCoinChange {
 
-    private int[] coins = new int[]{1, 2, 3};
+    private int[] coins = new int[]{2};
     public int makeChange(int c) {
         if (c == 0) return 0;
         int minCoins = Integer.MAX_VALUE;
@@ -63,32 +63,31 @@ public class MakingChange {
     // Bottom up dynamic programming solution.
     // Iteratively compute number of coins for
     // larger and larger amounts of change
+    //  Accepted in leetcode
     public int makeChangeBottomUp(int c) {
         int[] cache = new int[c + 1];
         for (int i = 1; i <= c; i++) {
-            int minCoins = Integer.MAX_VALUE;
+            int minCoins = 99999;
 
             // Try removing each coin from the total
             // and see which requires the fewest
             // extra coins
             for (int coin : coins) {
                 if (i - coin >= 0) {
-                    int currCoins = cache[i-coin] + 1;
-                    if (currCoins < minCoins) {
-                        minCoins = currCoins;
-                    }
+                    minCoins = Math.min(cache[i-coin] + 1, minCoins);
                 }
             }
             cache[i] = minCoins;
         }
 
-        return cache[c];
+        return cache[cache.length-1]==99999?-1:  cache[cache.length-1];
     }
 
     public static void main(String arg[]){
-        MakingChange c = new MakingChange();
-        System.out.println(c.makeChange(6));
-        System.out.println(c.makeChangeTopDown(6));
-        System.out.println(c.makeChangeBottomUp(6));
+        MakingCoinChange c = new MakingCoinChange();
+//        System.out.println(c.makeChange(6));
+//        System.out.println(c.makeChangeTopDown(6));
+//        System.out.println(c.makeChangeBottomUp(6));
+        System.out.println(c.makeChangeBottomUp(1));
     }
 }
