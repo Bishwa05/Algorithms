@@ -1,4 +1,5 @@
 # Algorithms
 
-A long way to go.
-<h2> The closer you look, the lesser you see </h2>
+<h2> Those who cannot remember the past are condemned to repeat it</h2>
+
+Dynamic Programming.

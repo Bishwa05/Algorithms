@@ -66,6 +66,6 @@ public class TargetSum {
         int s = 3;
         TargetSum t = new TargetSum();
         System.out.println(t.targetSum(arr, s));
-        System.out.println(t.targetSumMemo(arr, s))
+        System.out.println(t.targetSumMemo(arr, s));
     }
 }
