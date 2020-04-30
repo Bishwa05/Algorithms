@@ -17,7 +17,7 @@ public class OnesAndZeros {
             return 0;
         }
 
-        if(index==strs.length){
+        if(index==strs.length-1){
             return 0;
         }
 
@@ -33,9 +33,9 @@ public class OnesAndZeros {
             }
         }
 
-        if(m-zero<0 || n-one<0){
-            return findMaxForm(strs, m, n, index+1);
-        }
+//        if(m-zero<0 || n-one<0){
+//            return findMaxForm(strs, m, n, index+1);
+//        }
 
         int include = 1 + findMaxForm(strs, m-zero, n-one, index+1);
         int notInclude = findMaxForm(strs, m, n, index+1);
@@ -79,15 +79,15 @@ public class OnesAndZeros {
 //        int m = 1; int n = 1;
 //        System.out.println(o.findMaxForm(arr, m, n));
 
-//        String[] arr = {"10", "0001", "111001", "1", "0"};
-//        int m = 5;
-//        int n = 3;
-//        System.out.println(o.findMaxForm(arr, m, n));
-
-        String[] arr = {"10", "001", "111001", "1", "0","101"};
-        int m = 10;
-        int n =5;
+        String[] arr = {"10", "0001", "111001", "1", "0"};
+        int m = 5;
+        int n = 3;
         System.out.println(o.findMaxForm(arr, m, n));
+
+//        String[] arr = {"10", "001", "111001", "1", "0","101"};
+//        int m = 10;
+//        int n =5;
+//        System.out.println(o.findMaxForm(arr, m, n));
 
     }
 }

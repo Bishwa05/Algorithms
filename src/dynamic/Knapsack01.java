@@ -1,5 +1,10 @@
 package dynamic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
                      K(3, 2)         ---------> K(n, W)
@@ -23,47 +28,55 @@ public class Knapsack01 {
      * Time complexity : O(2^n)
      */
     public int findMaxValue(int itemIndex, int capacity, int[] weights, int[] values) {
+
+        if(capacity <0){
+            return Integer.MIN_VALUE;
+        }
+
+        if(itemIndex<0 || capacity == 0){
+            return 0;
+        }
+
         int weight = weights[itemIndex];
         int value = values[itemIndex];
 
-        if (itemIndex == 0 ||  capacity == 0) {
-            return 0;
-        }else if (weight > capacity) {
-            // unable to  accept item as weight exceeds capacity
-            return findMaxValue(itemIndex - 1, capacity,  weights, values);
-        }else {
-            int include = value + findMaxValue(itemIndex - 1, capacity - weight, weights, values);
-            int notInclude = findMaxValue(itemIndex - 1, capacity,  weights, values);
-            return Math.max(include, notInclude);
-        }
+        int include = value + findMaxValue(itemIndex - 1, capacity - weight, weights, values);
+        int notInclude = findMaxValue(itemIndex - 1, capacity,  weights, values);
+        return Math.max(include, notInclude);
     }
 
 
     /**
      * Time complexity O(w*v)
      */
-//    public int findMaxValue(int itemIndex, int capacity) {
-//
-//        int weight = weights[itemIndex];
-//        int value = values[itemIndex];
-//
-//        int max;
-//        if (memoTable[itemIndex][capacity] > 0 ) {
-//            return memoTable[itemIndex][capacity];
-//        }else if (itemIndex == 0 ||  capacity == 0) {
-//            return 0;
-//        }else if (weight > capacity) {
-//            max = findMaxValue(itemIndex - 1, capacity);
-//            return max;
-//        }else {
-//            int include = value + findMaxValue(itemIndex - 1, capacity - weight);
-//            int notInclude = findMaxValue(itemIndex - 1, capacity);
-//            max = Math.max(include, notInclude);
+
+
+//    public int knapsack(Item[] items, int W) {
+//        // Map: i -> W -> value
+//        Map<Integer, Map<Integer, Integer>> cache =
+//                new HashMap<>();
+//        return knapsack(items, W, 0, cache);
+//    }
+//    // Overloaded recursive function
+//    private int knapsack(Item[] items, int W, int
+//            i, Map<Integer, Map<Integer, Integer>> cache)
+//    {
+//        if (i == items.length) return 0;
+//        // Check if the value is in the cache
+//        if (!cache.containsKey(i))
+//            cache.put(i,new HashMap<>());
+//        Integer cached = cache.get(i).get(W);
+//        if (cached != null) return cached;
+//        // Compute the item and add it to the cache
+//        int toReturn;
+//        if (W - items[i].weight < 0) {
+//            toReturn = knapsack(items, W, i+1, cache);
+//        } else {
+//            toReturn = Math.max(knapsack(items,W - items[i].weight,i+1, cache) + items[i].value,
+//                            knapsack(items, W, i+1, cache));
 //        }
-//
-//        // update memorization table
-//        memoTable[itemIndex][capacity] = max;
-//        return max;
+//        cache.get(i).put(W, toReturn);
+//        return toReturn;
 //    }
 
 
@@ -106,7 +119,14 @@ public class Knapsack01 {
         int  W = 50;
         int n = val.length;
         Knapsack01 k = new Knapsack01();
-       // System.out.println(k.knapSack(W, wt, val, n));
-        System.out.println(k.findMaxValue(n-1,W, wt, val));
+       System.out.println(k.knapSack(W, wt, val, n));
+        //System.out.println(k.findMaxValue(n-1,W, wt, val));
+
+//        Item[] items = new Item[3];
+//        for(int i=0; i<3; i++) {
+//            Item it = new Item(wt[i],val[i]);
+//            items[i] =it;
+//        }
+//        System.out.println(k.knapsack(items, 50));
     }
 }
