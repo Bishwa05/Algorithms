@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PrintLCS {
 
-    // Function to fill lookup table by finding the length of LCS
+    // Function to fill lookup table by finding the length of lcs
     // of substring X and Y
     public static void LCSLength(String X, String Y, int[][] T)
     {
@@ -32,12 +32,12 @@ public class PrintLCS {
         }
 
         if(X.charAt(m-1)== Y.charAt(n-1)){
-            // ignore last characters of X and Y and find all LCS of
+            // ignore last characters of X and Y and find all lcs of
             // substring X[0..m-2], Y[0..n-2] and store it in a List
             List<String> lcs = LCS(X,Y,m-1,n-1,T);
 
             // append current character X[m - 1] or Y[n - 1]
-            // to all LCS of substring X[0..m-2] and Y[0..n-2]
+            // to all lcs of substring X[0..m-2] and Y[0..n-2]
             for (int i = 0; i < lcs.size(); i++) {
                 lcs.set(i, lcs.get(i) + (X.charAt(m - 1)));
             }
@@ -48,14 +48,14 @@ public class PrintLCS {
         //Here last char of X and Y does not match
 
         //if the top cell of current cell has more value than the left cell,
-        //then ignore current character of String X and find all LCS of
+        //then ignore current character of String X and find all lcs of
         //substring X[0..m-2], Y[0..n-1]
         if (T[m - 1][n] > T[m][n - 1])
             return LCS(X, Y, m - 1, n, T);
 
 
         // if left cell of current cell has more value than the top cell,
-        // then ignore current character of String Y and find all LCS of
+        // then ignore current character of String Y and find all lcs of
         // substring X[0..m-1], Y[0..n-2]
         if (T[m][n - 1] > T[m - 1][n])
             return LCS(X, Y, m, n - 1, T);
@@ -73,7 +73,7 @@ public class PrintLCS {
 
     }
 
-    // Function to find all LCS of String X[0..m-1] and Y[0..n-1]
+    // Function to find all lcs of String X[0..m-1] and Y[0..n-1]
     public static Set<String> LCS(String X, String Y, int[][] T)
     {
         // fill lookup table
@@ -91,7 +91,7 @@ public class PrintLCS {
     {
         String X = "ABCBDAB", Y = "BDCABA";
 
-        // T[i][j] stores the length of LCS of substring
+        // T[i][j] stores the length of lcs of substring
         // X[0..i-1], Y[0..j-1]
         int[][] T = new int[X.length() + 1][Y.length() + 1];
 
