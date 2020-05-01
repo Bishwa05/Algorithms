@@ -14,9 +14,10 @@ Sum(m, n, X) = Sum(m, n - 1, X - 1) +
  */
 
 
+import java.util.Arrays;
 
 public class DiceThrow {
-    static double mod  = 1e9 +7;
+    static double mod  = 1000000000 + 7;
 
     static long findWays(int m, int n, int x)
     {
@@ -41,11 +42,11 @@ public class DiceThrow {
         }
 
         //Uncomment these lines to see content of table
-        for(int i = 0; i< n+1; i++){
-            for(int j = 0; j< x+1; j++)
-                System.out.print(table[i][j] + " ");
-            System.out.println();
-        }
+//        for(int i = 0; i< n+1; i++){
+//            for(int j = 0; j< x+1; j++)
+//                System.out.print(table[i][j] + " ");
+//            System.out.println();
+//        }
 
         return table[n][x];
     }
@@ -55,13 +56,6 @@ public class DiceThrow {
      * Approach 2
      */
 
-    private static int add(int a, int b){
-        a+=b;
-        if(a>=mod){
-            a-=mod;
-        }
-        return a;
-    }
     public static int findWays2(int d,  int f, int target){
         int[] ways = new int[target+1];
 
@@ -69,40 +63,60 @@ public class DiceThrow {
 
         for(int rep =1; rep<=d; rep++) {
 
-
-            for(int i=1; i<=target; ++i){
-                ways[i] = add(ways[i], ways[i-1]);
-            }
             int newWays[] = new int[target+1];
 
-            for(int newSum =1;newSum<=target; newSum++){
-                newWays[newSum]  =  ways[newSum-1] -
-                        newSum-f-1>=0?ways[newSum-f-1]:0;
-
-                if(newWays[newSum]<0){
-                    newWays[newSum]+=mod;
+            for (int already = 0; already <= target; ++already) {
+                for (int pipe = 1; pipe <= f; ++pipe) {
+                    if (already - pipe >= 0) {
+                        newWays[already] += ways[already - pipe];
+                        newWays[already] %= mod;
+                    }
                 }
             }
-
-
-//            for(int already=0; already<=target; already++){
-//                for(int pipes = 1; pipes<=f; pipes++){
-//                    if(already+pipes <= target){
-//
-//                        newWays[already+pipes] +=ways[already];
-//
-////                        int temp = newWays[already+pipes];
-////
-////                        temp  += ways[already];
-////                        if(temp >= mod){
-////                            temp -= mod;
-////                        }
-//                    }
-//                }
-//            }
-//        ways = newWays;
+            ways = newWays;
         }
         return ways[target];
+    }
+
+    /**
+     * Recursive way with memoize
+     */
+    static int[][] dp;
+    public static int findWays3(int d,  int f, int target){
+        dp = new int[d+1][Math.max(target, f)+1];
+        for(int[] i: dp){
+            Arrays.fill(i,-1);
+        }
+        int x = helper(d,f,target);
+        return x;
+
+    }
+
+    public static int helper(int d, int f, int target){
+        if(dp[d][target]!= -1) return dp[d][target];
+
+        //Base case
+        if(d==1){
+            if(target==0){
+                return 0;
+            }
+
+            if(target <=f){
+                return 1;
+            }
+            return 0;
+        }
+        int ways =0;
+        for(int i=1; i<=f; i++){
+            int l = helper(1, f,i);
+            int r = target-i>0?helper(d-1,f, target-i):0;
+            ways +=  (l*r)  %mod;
+            ways %=mod;
+        }
+
+        dp[d][target]=ways;
+        return ways;
+
     }
 
     public static void main(String arg[]) {
@@ -120,6 +134,9 @@ public class DiceThrow {
          * rows denotes number of dices
          * 10 = 4+3+2+1 from above row.
          */
-        System.out.println(findWays2(6, 3, 6));
+        //System.out.println(findWays(6, 3, 6));
+        //System.out.println(findWays2(6, 3, 6));
+        System.out.println(findWays3(6, 3, 6));
+        System.out.println(findWays3(3, 4, 6));
     }
 }
