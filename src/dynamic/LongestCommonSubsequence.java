@@ -1,13 +1,32 @@
 package dynamic;
 
 public class LongestCommonSubsequence {
-    /* Returns length of LCS for X[0..m-1], Y[0..n-1] */
-    int lcs( char[] X, char[] Y, int m, int n )
+
+    // Traverse from bottom right to top left
+    public static String lcs(String X, String Y, int m, int n, int[][] T)
     {
-        int L[][] = new int[m+1][n+1];
+        if (m == 0 || n == 0) {
+            return new String();
+        }
+
+        if (X.charAt(m - 1) == Y.charAt(n - 1)) {
+            return lcs(X, Y, m - 1, n - 1, T) + X.charAt(m - 1);
+        }
+
+        if (T[m - 1][n] > T[m][n - 1]) {
+            return lcs(X, Y, m - 1, n, T);
+        }
+        else {
+            return lcs(X, Y, m, n - 1, T);
+        }
+    }
+
+    /* Returns length of lcs for X[0..m-1], Y[0..n-1] */
+    public int lcsLength( char[] X, char[] Y, int m, int n , int[][] L)
+    {
 
     /* Following steps build L[m+1][n+1] in bottom up fashion. Note
-         that L[i][j] contains length of LCS of X[0..i-1] and Y[0..j-1] */
+         that L[i][j] contains length of lcs of X[0..i-1] and Y[0..j-1] */
         for (int i=0; i<=m; i++)
         {
             for (int j=0; j<=n; j++)
@@ -34,8 +53,11 @@ public class LongestCommonSubsequence {
         char[] Y=s2.toCharArray();
         int m = X.length;
         int n = Y.length;
+        int[][] T = new int[m + 1][n + 1];
 
-        System.out.println("Length of LCS is" + " " +
-                lcs.lcs( X, Y, m, n ) );
+        lcs.lcsLength( X, Y, m, n , T);
+
+        System.out.print(lcs.lcs(s1, s2, m, n, T));
+
     }
 }

@@ -51,33 +51,27 @@ public class Knapsack01 {
      */
 
 
-//    public int knapsack(Item[] items, int W) {
-//        // Map: i -> W -> value
-//        Map<Integer, Map<Integer, Integer>> cache =
-//                new HashMap<>();
-//        return knapsack(items, W, 0, cache);
-//    }
-//    // Overloaded recursive function
-//    private int knapsack(Item[] items, int W, int
-//            i, Map<Integer, Map<Integer, Integer>> cache)
-//    {
-//        if (i == items.length) return 0;
-//        // Check if the value is in the cache
-//        if (!cache.containsKey(i))
-//            cache.put(i,new HashMap<>());
-//        Integer cached = cache.get(i).get(W);
-//        if (cached != null) return cached;
-//        // Compute the item and add it to the cache
-//        int toReturn;
-//        if (W - items[i].weight < 0) {
-//            toReturn = knapsack(items, W, i+1, cache);
-//        } else {
-//            toReturn = Math.max(knapsack(items,W - items[i].weight,i+1, cache) + items[i].value,
-//                            knapsack(items, W, i+1, cache));
-//        }
-//        cache.get(i).put(W, toReturn);
-//        return toReturn;
-//    }
+    public int knapsackMemoize(int n, int W, int wt[], int val[],  Map<String, Integer> map) {
+        if(n <0){
+            return Integer.MIN_VALUE;
+        }
+
+        if(n<0 || W == 0){
+            return 0;
+        }
+
+        String key = n+"|"+W;
+
+        if(!map.containsKey(key)) {
+            int weight = wt[n];
+            int value = val[n];
+
+            int include = value + knapsackMemoize(n - 1, W - weight, wt, val,map);
+            int notInclude = knapsackMemoize(n - 1, W,  wt, val, map);
+            map.put(key,Math.max(include, notInclude));
+        }
+        return map.get(key);
+    }
 
 
     public int knapSack(int W, int wt[], int val[], int n)
@@ -120,13 +114,8 @@ public class Knapsack01 {
         int n = val.length;
         Knapsack01 k = new Knapsack01();
        System.out.println(k.knapSack(W, wt, val, n));
-        //System.out.println(k.findMaxValue(n-1,W, wt, val));
+       Map<String, Integer> map = new HashMap<>();
+        System.out.println(k.knapsackMemoize(n-1,W, wt, val, map));
 
-//        Item[] items = new Item[3];
-//        for(int i=0; i<3; i++) {
-//            Item it = new Item(wt[i],val[i]);
-//            items[i] =it;
-//        }
-//        System.out.println(k.knapsack(items, 50));
     }
 }

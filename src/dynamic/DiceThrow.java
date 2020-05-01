@@ -15,8 +15,8 @@ Sum(m, n, X) = Sum(m, n - 1, X - 1) +
 
 
 
-public class DiceThrow
-{
+public class DiceThrow {
+    static double mod  = 1e9 +7;
 
     static long findWays(int m, int n, int x)
     {
@@ -49,6 +49,62 @@ public class DiceThrow
 
         return table[n][x];
     }
+
+    /**
+     *
+     * Approach 2
+     */
+
+    private static int add(int a, int b){
+        a+=b;
+        if(a>=mod){
+            a-=mod;
+        }
+        return a;
+    }
+    public static int findWays2(int d,  int f, int target){
+        int[] ways = new int[target+1];
+
+        ways[0] =1;
+
+        for(int rep =1; rep<=d; rep++) {
+
+
+            for(int i=1; i<=target; ++i){
+                ways[i] = add(ways[i], ways[i-1]);
+            }
+            int newWays[] = new int[target+1];
+
+            for(int newSum =1;newSum<=target; newSum++){
+                newWays[newSum]  =  ways[newSum-1] -
+                        newSum-f-1>=0?ways[newSum-f-1]:0;
+
+                if(newWays[newSum]<0){
+                    newWays[newSum]+=mod;
+                }
+            }
+
+
+//            for(int already=0; already<=target; already++){
+//                for(int pipes = 1; pipes<=f; pipes++){
+//                    if(already+pipes <= target){
+//
+//                        newWays[already+pipes] +=ways[already];
+//
+////                        int temp = newWays[already+pipes];
+////
+////                        temp  += ways[already];
+////                        if(temp >= mod){
+////                            temp -= mod;
+////                        }
+//                    }
+//                }
+//            }
+//        ways = newWays;
+        }
+        return ways[target];
+    }
+
     public static void main(String arg[]) {
         // 1+6, 2+5, 3+4, 4+3, 5+2, 6+1, 6, 2, 7
         // 1+1+4, 1+2+3, 1+3+2, 1+4+1, 2+1+3, 2+2+2
@@ -64,6 +120,6 @@ public class DiceThrow
          * rows denotes number of dices
          * 10 = 4+3+2+1 from above row.
          */
-        System.out.println(findWays(6, 3, 6));
+        System.out.println(findWays2(6, 3, 6));
     }
 }
