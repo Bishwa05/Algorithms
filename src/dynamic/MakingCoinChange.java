@@ -5,12 +5,15 @@ package dynamic;
  *         makeChange(1) = 1 (1)
  *         makeChange(6) = 2 (5 + 1)
  *         makeChange(49) = 7 (25 + 10 + 10 + 1 + 1 + 1 + 1)
+ *
+ * Given an unlimited Supply of coins of given denominations
+ * find the minimum  number of coins required to get a desired change
  */
 
 
 public class MakingCoinChange {
+    private int[] coins = new int[]{1,2,3};
 
-    private int[] coins = new int[]{2};
     public int makeChange(int c) {
         if (c == 0) return 0;
         int minCoins = Integer.MAX_VALUE;
@@ -85,9 +88,9 @@ public class MakingCoinChange {
 
     public static void main(String arg[]){
         MakingCoinChange c = new MakingCoinChange();
-//        System.out.println(c.makeChange(6));
+        System.out.println(c.makeChange(6));
 //        System.out.println(c.makeChangeTopDown(6));
 //        System.out.println(c.makeChangeBottomUp(6));
-        System.out.println(c.makeChangeBottomUp(1));
+//        System.out.println(c.makeChangeBottomUp(1));
     }
 }

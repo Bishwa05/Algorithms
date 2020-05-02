@@ -2,7 +2,23 @@ package dynamic;
 
 public class LongestRepeatedSubsequence {
 
-    static String longestRepeatedSubSeq(String str)
+    /**
+     * m = str.length();
+     * n = str.length();
+     */
+    public static int longestRepeatedSubSeqLength(String str, int m, int n) {
+        if(m ==0 || n ==0){
+            return 0;
+        }
+
+        if(str.charAt(m)  == str.charAt(n) && m!=n){
+            return longestRepeatedSubSeqLength(str, m-1, n-1);
+        }
+        return Math.max(longestRepeatedSubSeqLength(str, m-1, n),
+                longestRepeatedSubSeqLength(str, m, n-1));
+    }
+
+    public static String longestRepeatedSubSeq(String str)
     {
         int n = str.length();
         int[][] dp = new int[n + 1][n + 1];
@@ -11,12 +27,14 @@ public class LongestRepeatedSubsequence {
             for (int j = 0; j <= n; j++)
                 dp[i][j] = 0;
 
-        for (int i = 1; i <= n; i++)
-            for (int j = 1; j <= n; j++)
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= n; j++) {
                 if (str.charAt(i - 1) == str.charAt(j - 1) && i != j)
                     dp[i][j] = 1 + dp[i - 1][j - 1];
                 else
                     dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+            }
+        }
 
 
         String res = "";
