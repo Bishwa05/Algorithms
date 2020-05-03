@@ -11,7 +11,7 @@ package dynamic;
  */
 
 
-public class MakingCoinChange {
+public class CoinChange {
     private int[] coins = new int[]{1,2,3};
 
     public int makeChange(int c) {
@@ -87,7 +87,7 @@ public class MakingCoinChange {
     }
 
     public static void main(String arg[]){
-        MakingCoinChange c = new MakingCoinChange();
+        CoinChange c = new CoinChange();
         System.out.println(c.makeChange(6));
 //        System.out.println(c.makeChangeTopDown(6));
 //        System.out.println(c.makeChangeBottomUp(6));
