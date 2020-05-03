@@ -27,29 +27,6 @@ public class CombinationSumIV {
     /**
      * Similar to coin change.
      */
-    public int combinationSum4BottomUp(int[] nums, int target) {
-        if(nums==null || nums.length==0)
-            return 0;
-
-        int[] dp = new int[target+1];
-
-        dp[0]=1;
-
-        for(int i=0; i<=target; i++){
-            for(int num: nums){
-//                if(i+num<=target){
-//                    dp[i+num]= dp[i+num] + dp[i];
-//                }
-                if(i>=num){
-                    dp[i] = dp[i]+  dp[i-num];
-                }
-            }
-        }
-
-        return dp[target];
-
-    }
-
     public int combinationSum4(int[] nums, int target) {
         if(target==0){
             return 1;
@@ -63,6 +40,39 @@ public class CombinationSumIV {
         return res;
 
     }
+
+    public int combinationSum4BottomUp(int[] nums, int target) {
+        if(nums==null || nums.length==0)
+            return 0;
+
+        int[] dp = new int[target+1];
+
+        dp[0]=1;
+
+//        for(int i=0; i<=target; i++){
+//            for(int num: nums){
+////                if(i+num<=target){
+////                    dp[i+num]= dp[i+num] + dp[i];
+////                }
+//                if(i>=num){
+//                    dp[i] = dp[i]+  dp[i-num];
+//                }
+//            }
+//        }
+
+        for(int i=0; i<=target; i++){
+            for(int j =0; j <nums.length; j++){
+                if(i>=nums[j]){
+                    dp[i] = dp[i]+  dp[i-nums[j]];
+                }
+            }
+        }
+
+        return dp[target];
+
+    }
+
+
 
     int [] dp;
     public int combinationSum4Memo(int[] nums, int target) {
@@ -91,7 +101,7 @@ public class CombinationSumIV {
         int target =4;
         CombinationSumIV cs = new CombinationSumIV();
         System.out.println(cs.combinationSum4BottomUp(nums, target));
-       System.out.println(cs.combinationSum4(nums, target));
+       //System.out.println(cs.combinationSum4(nums, target));
 
     }
 }
