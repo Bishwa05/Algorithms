@@ -29,11 +29,11 @@ public class TopologicalSort<T> {
     public Deque<Vertex<T>> topSort(Graph<T> graph) {
         Deque<Vertex<T>> stack = new ArrayDeque<>();
         Set<Vertex<T>> visited = new HashSet<>();
-        for (Vertex<T> vertex1 : graph.getAllVertex()) {
-            if (visited.contains(vertex1)) {
+        for (Vertex<T> vertex : graph.getAllVertex()) {
+            if (visited.contains(vertex)) {
                 continue;
             }
-            topSortUtil(vertex1,stack,visited);
+            topSortUtil(vertex,stack,visited);
         }
         return stack;
     }
@@ -41,11 +41,11 @@ public class TopologicalSort<T> {
     private void topSortUtil(Vertex<T> vertex, Deque<Vertex<T>> stack,
                              Set<Vertex<T>> visited) {
         visited.add(vertex);
-        for(Vertex<T> childVertex1 : vertex.getAdjacentVertexes()){
-            if(visited.contains(childVertex1)){
+        for(Vertex<T> childVertex : vertex.getAdjacentVertexes()){
+            if(visited.contains(childVertex)){
                 continue;
             }
-            topSortUtil(childVertex1,stack,visited);
+            topSortUtil(childVertex,stack,visited);
         }
         stack.offerFirst(vertex);
     }
