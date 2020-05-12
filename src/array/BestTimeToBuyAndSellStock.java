@@ -2,7 +2,7 @@ package array;
 
 /**
  * 121. Best Time to Buy and Sell Stock
- * Leetcodee
+ * Leetcode
  */
 public class BestTimeToBuyAndSellStock {
 
