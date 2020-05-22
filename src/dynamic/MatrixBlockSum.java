@@ -23,6 +23,9 @@ public class MatrixBlockSum {
 
         int[][] res = new int[M][N];
 
+        /**
+         * TODO: Analysis on this
+         */
         for(int r= 0; r<M; r++){
             for(int c = 0; c<N; c++){
                 int r0 = Math.max(r-K, 0);
