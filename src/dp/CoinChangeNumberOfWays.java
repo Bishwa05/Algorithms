@@ -1,5 +1,6 @@
 package dp;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class CoinChangeNumberOfWays {
@@ -40,6 +41,20 @@ public class CoinChangeNumberOfWays {
         }
 
         return lookup.get(key);
+    }
+
+    public int changeBottomUp(int amount, int[] coins) {
+
+        int dp[] = new int[amount+1];
+        Arrays.fill(dp, 0);
+        dp[0] = 1;
+        for(int coin:coins)
+        {
+            for(int j = coin; j<=amount; j++){
+                dp[j] += dp[j - coin];
+            }
+        }
+        return dp[amount];
     }
 
     public static void main(String[] args)
