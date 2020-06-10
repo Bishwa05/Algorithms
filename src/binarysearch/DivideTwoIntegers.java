@@ -1,5 +1,8 @@
 package binarysearch;
 
+/**
+ * Leetcode 29 Divide Two Integers
+ */
 public class DivideTwoIntegers {
     public int divide(int dividend, int divisor) {
 
