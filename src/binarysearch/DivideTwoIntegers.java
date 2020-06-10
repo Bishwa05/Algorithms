@@ -16,13 +16,13 @@ public class DivideTwoIntegers {
             return dividend == Integer.MIN_VALUE?Integer.MAX_VALUE: -dividend;
         }
         boolean isNegative = (dividend >0 && divisor<0)|| (dividend <0 && divisor >0);
-        long longDevidend = Math.abs((long)dividend);
+        long longDividend = Math.abs((long)dividend);
         long longDivisor = Math.abs((long)divisor);
         int res =0;
-        for(int bit = Integer.SIZE; bit>=0 && longDevidend >= longDivisor; bit-- ){
-            if(longDevidend >=(longDivisor << bit)){
+        for(int bit = Integer.SIZE; bit>=0 && longDividend >= longDivisor; bit-- ){
+            if(longDividend >=(longDivisor << bit)){
                 res |= (1<<bit);
-                longDevidend -= (longDivisor << bit);
+                longDividend -= (longDivisor << bit);
             }
         }
         return isNegative? -res :res;
