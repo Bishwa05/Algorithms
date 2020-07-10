@@ -1,7 +1,9 @@
 package divideandconquer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -32,7 +34,11 @@ import java.util.List;
  */
 public class DifferentWaysToAddParentheses {
 
+    Map<String, List<Integer>> map = new HashMap<>();
+
     public List<Integer> diffWaysToCompute(String input) {
+        if(map.containsKey(input)) return map.get(input);
+
         List<Integer> result = new ArrayList<>();
         if (input == null || input.length() == 0) {
             return result;
@@ -61,6 +67,7 @@ public class DifferentWaysToAddParentheses {
             result.add(Integer.parseInt(input));
         }
 
+        map.put(input, result);
         return result;
     }
 
