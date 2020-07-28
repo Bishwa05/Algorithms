@@ -93,4 +93,52 @@ public class MedianOfTwoSortedArray {
 
         System.out.println(findMedianSortedArray(arr1, arr2));
     }
+
+    /**
+     * Time complexity is O(log(min(m,n)))
+     * We need to find the correct correct partition on the smaller array.
+     * Then we can compute the partition in the larger array.
+     * @param A
+     * @param B
+     * @return
+     */
+    public static double findMedianSortedArraySimple(int[]A, int[]B){
+
+        if(A.length >B.length){
+            findMedianSortedArraySimple(B, A);
+        }
+
+        int x = A.length;
+        int y = B.length;
+
+        int low = 0;
+        int high = x;
+
+        while(low <= high){
+            int partitionX = low + (high-low)/2;
+            int partitionY = (x+y+1)/2 -partitionX;
+
+            int maxLeftX = (partitionX==0)?Integer.MIN_VALUE: A[partitionX-1];
+            int minRightX = (partitionX == x)?Integer.MAX_VALUE: A[partitionX];
+
+            int maxLeftY = (partitionY==0)?Integer.MIN_VALUE: A[partitionY-1];
+            int minRightY = (partitionY == y)?Integer.MAX_VALUE: A[partitionY];
+
+            if(maxLeftX<=minRightY && maxLeftY <= minRightX){
+                // Partitioned at correct place
+                if((x+y)%2 ==0){
+                    return ((double)Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY))/2;
+                } else{
+                    return (double)Math.max(maxLeftX, maxLeftY);
+                }
+            } else if(maxLeftX >minRightY){
+                high = partitionX -1;
+            } else{
+                low = partitionX+1;
+            }
+
+        }
+        return -1;
+
+    }
 }
