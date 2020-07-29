@@ -27,7 +27,7 @@ public class TargetSum {
     }
 
 
-/**     Top down dynamic programming solution. Like
+/**     Top down dp programming solution. Like
  0-1 Knapsack, we use a HashMap to save
  space
  */
