@@ -9,19 +9,20 @@ import java.util.Set;
  *
  *
  *
- * The solution is straight forward,
- * while you may worry about the time complexity up to O(N^2)
- * However, it's not the fact.
- * This solution has only O(30N)
- * The reason is that, B[0][i] >= B[1][i] >= ... >= B[i][i].
- * B[0][i] covers all bits of B[1][i]
- * B[1][i] covers all bits of B[2][i]
- * ....
- * There are at most 30 bits for a positive number 0 <= A[i] <= 10^9.
- * So there are at most 30 different values for B[0][i], B[1][i], B[2][i], ..., B[i][i].
- * Finally cur.size() <= 30 and res.size() <= 30 * A.length()
- * In a worst case, A = {1,2,4,8,16,..., 2 ^ 29}
- * And all B[i][j] are different and res.size() == 30 * A.length()
+ Let's try to speed up a brute force answer. Evidently, the brute
+ force approach is to calculate every result result(i, j) = A[i] | A[i+1] | ... | A[j].
+ We can speed this up by taking note of the fact that result(i, j+1) = result(i, j) | A[j+1].
+ Naively, this approach has time complexity O(N^2) , where N is the length of the array.
+
+ Actually, this approach can be better than that. At the kth step,
+ say we have all the result(i, k) in some set cur.
+ Then we can find the next cur set (for k -> k+1) by
+ using result(i, k+1) = result(i, k) | A[k+1].
+
+ However, the number of unique values in this set cur is at most 32,
+ since the list result(k, k), result(k-1, k), result(k-2, k), ... is
+ monotone increasing, and any subsequent values that are different
+ must have more 1s in it's binary representation (to a maximum of 32 ones).
  *
  *
  */
@@ -29,24 +30,19 @@ import java.util.Set;
 public class BitwiseORsOfSubarrays
 {
     public int subarrayBitwiseORs(int[] A) {
-        Set<Integer> res = new HashSet<>();
-        Set<Integer> prev = new HashSet<>();
-        res.add(A[0]);
-        prev.add(A[0]);
-
-        for(int i=1; i<A.length; i++){
-            Set<Integer> curr = new HashSet<>();
-            res.add(A[i]);
-            curr.add(A[i]);
-
-            for(int a : prev){
-                curr.add(a| A[i]);
-                res.add(a|A[i]);
-            }
-            prev = curr;
+        Set<Integer> ans = new HashSet();
+        Set<Integer> cur = new HashSet();
+        cur.add(0);
+        for (int x: A) {
+            Set<Integer> cur2 = new HashSet();
+            for (int y: cur)
+                cur2.add(x | y);
+            cur2.add(x);
+            cur = cur2;
+            ans.addAll(cur);
         }
 
-        return res.size();
+        return ans.size();
 
     }
 
