@@ -1,10 +1,12 @@
 package dp;
 
 /**
+ *
  * Minimum edits required to make 2 strings equivalent.
  *   "sunday"
  *   "saturday"
  *
+ * This is also called Levenshtein distance.
  *
  * dp[i][j] = 1 + min(dp[i][j - 1], // Insert
  *            dp[i - 1][j], // Remove

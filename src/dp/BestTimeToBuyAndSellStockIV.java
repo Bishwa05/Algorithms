@@ -36,4 +36,10 @@ public class BestTimeToBuyAndSellStockIV
         return sell[k-1];
 
     }
+
+    public static void main(String arg[]){
+        int[] nums = {3,2,6,5,0,3};
+        BestTimeToBuyAndSellStockIV b = new BestTimeToBuyAndSellStockIV();
+        System.out.println(b.maxProfit(2, nums));
+    }
 }
