@@ -1,5 +1,19 @@
 package backtrack;
 
+
+/**
+ *
+ * On a 2-dimensional grid, there are 4 types of squares:
+ *
+ * 1 represents the starting square.  There is exactly one starting square.
+ * 2 represents the ending square.  There is exactly one ending square.
+ * 0 represents empty squares we can walk over.
+ * -1 represents obstacles that we cannot walk over.
+ *
+ * Return the number of 4-directional walks from the starting square to the ending square,
+ * that walk over every non-obstacle square exactly once.
+ *
+ */
 public class UniquePathsIII
 {
 
@@ -59,8 +73,40 @@ public class UniquePathsIII
         return;
     }
 
+
+//
+//    public void dfs(int[][] grid, int i, int j, int curr, int[] result){
+//
+//        if(i<0 || i>= rows || j<0|| j>= cols || grid[i][j]<0) return;
+//
+//        if(grid[i][j] == 1 && curr > 0) return;
+//
+//        if(grid[i][j] == 2) {
+//            if(curr == countZero) {
+//                result[0]++;
+//                return;
+//            }
+//        }
+//        if(grid[i][j] == 0) {
+//            grid[i][j] = -2;
+//            curr++;
+//        }
+//
+//        dfs(grid, i+1, j, curr, result);
+//        dfs(grid, i-1, j, curr, result);
+//        dfs(grid, i, j+1, curr, result);
+//        dfs(grid, i, j-1, curr, result);
+//
+//        if(grid[i][j] == -2) {
+//            grid[i][j] = 0;
+//            curr--;
+//        }
+//        return;
+//    }
+
+
     public static void main(String arg[]){
-        int[][] arr = {{1,0,0,0},{0,0,0,0},{0,0,2,-1}};
+        int[][] arr = {{0,1},{2,0}};
         UniquePathsIII u = new UniquePathsIII();
         System.out.println(u.uniquePathsIII(arr));
     }
