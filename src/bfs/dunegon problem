@@ -1,0 +1,49 @@
+
+
+
+function solve(){
+    rq.enqueue(sr)
+    cq.enqueue(sc)
+    visited[sr][sc] = true
+    while (rq.size() > 0) { # or cq.size() >0
+        r = rq.dequeue()
+        c = cq.dequeue()
+        if (m[r][c] =='E') {
+            reachedEnd = true;
+            break;
+        }
+        explore_neighbours(r,c)
+        nodes_left_in_layer--
+
+        if (nodes_left_in_layer ==0){
+            nodes_left_in_layer = nodes_in_next_layer
+            nodes_in_next_layer =0
+            move_count++
+        }
+    }
+    if(reachedEnd){
+    return move_count
+    }
+    return -1
+}
+
+function explore_neighbours(r, c){
+    for(i =0; i<4; i++){
+        rr = r + dr[i]
+        cc = c  + dc[i]
+    }
+    # skip out of bounds locations
+    if (rr < 0 || cc<0) continue
+    if (rr>=R || cc>= C) continue
+
+    # skip visited locations or blocked cells
+    if (visited[rr][cc]) continue
+    if (m[rr][cc] == '#') continue
+
+    rq.enqueue(rr)
+    cq.enqueue(cc)
+    visited[rr][cc] = true
+    nodes_in_next_layer++
+
+
+}

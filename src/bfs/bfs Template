@@ -3,7 +3,7 @@
  */
 int BFS(Node root, Node target) {
     Queue<Node> queue;  // store all nodes which are waiting to be processed
-    int step = 0;       // number of steps neeeded from root to current node
+    int step = 0;       // number of steps needed from root to current node
     // initialize
     add root to queue;
     // BFS
