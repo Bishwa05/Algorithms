@@ -47,10 +47,23 @@ public class JumpGameIV
                 }
 
                 // clear the list to prevent redundant search
-            }
+                graph.get(arr[node]).clear();
 
+                // check neighbors
+                if (node+1 <n && !visited.contains(node+1)) {
+                    visited.add(node +1);
+                    nex.add(node + 1);
+                }
+                if (node - 1>=0 && !visited.contains(node -1)) {
+                    visited.add(node -1);
+                    nex.add(node -1);
+                }
+            }
+            curs = nex;
+            step++;
 
         }
+        return -1;
 
     }
 }
