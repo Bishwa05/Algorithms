@@ -7,11 +7,13 @@ package binarysearch;
  *  Approach
  *  1. Find the high.
  *  2. search from both sides till high
+ *
+ *  Found in scaler
  */
 public class SearchInBitonicArray
 {
 
-    private int binarySerach(int[] arr, int target, int hi, boolean leftToRight){
+    private int binarySearch(int[] arr, int target, int hi, boolean leftToRight){
 
         if(leftToRight){
           int lo=0;
@@ -48,11 +50,11 @@ public class SearchInBitonicArray
         int maxIndex = FindPeakElement.findPeakElement(arr);
         int res =-1;
         if(maxIndex!=0) {
-            res = binarySerach(arr, target, maxIndex, true);
+            res = binarySearch(arr, target, maxIndex, true);
             if(res!= -1) return res;
         }
         if(maxIndex!=arr.length-1)
-            res = binarySerach(arr, target, maxIndex, false);
+            res = binarySearch(arr, target, maxIndex, false);
 
         return res;
     }
@@ -60,7 +62,7 @@ public class SearchInBitonicArray
     public static void main(String arg[]){
         SearchInBitonicArray s = new SearchInBitonicArray();
         int[] x = {1, 3, 6, 8, 9, 5, 4, 2};
-        System.out.println(s.serachIndex(x,8));
+        System.out.println(s.serachIndex(x,9));
     }
 
 }
