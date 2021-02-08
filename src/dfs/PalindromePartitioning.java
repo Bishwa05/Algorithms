@@ -1,6 +1,7 @@
 package dfs;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.
@@ -9,30 +10,32 @@ import java.util.ArrayList;
  */
 public class PalindromePartitioning {
 
-    public ArrayList<ArrayList<String>> partition(String s) {
-        ArrayList<ArrayList<String>> result = new ArrayList<>();
+    public List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
 
-        if(s == null || s.length() ==0){
+        if(s == null || s.length() ==0) {
             return result;
         }
 
-        ArrayList<String> partition = new ArrayList<>();
+        List<String> partition = new ArrayList<>();
         addPalindrome(s, 0, partition, result);
         return result;
     }
 
-    private void addPalindrome(String s, int start, ArrayList<String> partition,
-                               ArrayList<ArrayList<String>> result) {
+    private void addPalindrome(String s, int start, List<String> partition,
+                               List<List<String>> result) {
         if(start == s.length()) {
-            ArrayList<String> temp = new ArrayList<>();
+            List<String> temp = new ArrayList<>(partition);
             result.add(temp);
             return;
         }
         for(int i = start+1; i<= s.length(); i++){
             String str = s.substring(start, i);
-            partition.add(str);
-            addPalindrome(s, i, partition, result);
-            partition.remove(partition.size()-1);
+            if (isPalindrome(str)) {
+                partition.add(str);
+                addPalindrome(s, i, partition, result);
+                partition.remove(partition.size() - 1);
+            };
         }
     }
 
