@@ -14,6 +14,9 @@ import java.util.List;
  * Given [5, 7, 7, 8, 8, 10] and target value 8,
  * return 2.
  *
+ * Similar Question
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ *
  */
 public class CountElementOccurence
 {
