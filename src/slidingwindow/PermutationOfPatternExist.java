@@ -9,6 +9,8 @@ import java.util.Map;
  * Output: true
  * Explanation: The string contains "bca" which is a permutation of the given pattern.
  *
+ *
+ * Time complexity : O(N+M) where N and M are number of character in input string and pattern.
  */
 public class PermutationOfPatternExist
 {
