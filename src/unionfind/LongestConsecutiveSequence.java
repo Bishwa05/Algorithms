@@ -1,8 +1,6 @@
 package unionfind;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -97,5 +95,31 @@ public class LongestConsecutiveSequence
 
     }
 
+
+    /***********************************************************/
+    /**
+     * O(n)
+     */
+    public int longestConscutive(int[] nums){
+        Set<Integer> numset = new HashSet<>();
+        for(int num : nums){
+            numset.add(num);
+        }
+        int longStreak =0;
+
+        for(int num:numset){
+            if(!numset.contains(num-1)){
+                int currentNum = num;
+                int currentStreak = 1;
+
+                while(numset.contains(currentNum+1)){
+                    currentNum+=1;
+                    currentStreak +=1;
+                }
+                longStreak = Math.max(longStreak, currentStreak);
+            }
+        }
+        return longStreak;
+    }
 
 }
