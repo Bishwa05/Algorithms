@@ -1,6 +1,8 @@
 package dp;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -17,6 +19,10 @@ import java.util.Arrays;
  */
 public class PartitionEqualSubsetSum {
 
+    /**
+     *
+     * Recursive approach
+     */
     public boolean canPartition(int[] nums){
         int sum = 0;
         for(int i =0; i<nums.length; i++){
@@ -37,9 +43,57 @@ public class PartitionEqualSubsetSum {
             return isSubsetSum(nums, n-1, sum);
 
         return isSubsetSum(nums, n-1, sum) ||
-            isSubsetSum(nums, n, sum- nums[n-1]);
+            isSubsetSum(nums, n-1, sum- nums[n-1]);
     }
 
+    /**
+     * DP with Memoization
+     *
+     */
+    public boolean canPartitionMemo(int[] nums){
+        boolean counter = false;
+        int sum =0;
+        for(int i: nums){
+            sum +=i;
+        }
+        if(sum%2 != 0){
+            return counter;
+        }
+        Map<String, Boolean> map = new HashMap<>();
+
+        counter = helper(nums, nums.length-1, sum/2, map);
+        return counter;
+    }
+
+    public boolean helper(int[] nums, int n, int sum, Map<String, Boolean> map){
+        String keys = sum+" "+n;
+        if(sum ==0) return true;
+
+        if(n ==0 && sum != 0) return false;
+
+        if(map.containsKey(keys)){
+            return map.get(keys);
+        }
+        boolean res;
+
+        if(nums[n] > sum){
+            res = helper(nums, n-1, sum, map);
+            map.put(keys, res);
+            return res;
+        }
+
+        res = helper(nums, n-1, sum, map)||
+        helper(nums, n-1, sum - nums[n], map);
+        map.put(keys, res);
+        return res;
+
+    }
+
+
+    /**
+     *
+     * Bottom up approach which is quite difficult to write.
+     */
 
     public boolean canPartitionDP(int[] nums) {
 
@@ -76,7 +130,7 @@ public class PartitionEqualSubsetSum {
     public static void main(String arg[]) {
         int[] n = {1,2,3,4,5,6,7};
         PartitionEqualSubsetSum p = new PartitionEqualSubsetSum();
-        System.out.println(p.canPartitionDP(n));
+        System.out.println(p.canPartition(n));
 
     }
 }
