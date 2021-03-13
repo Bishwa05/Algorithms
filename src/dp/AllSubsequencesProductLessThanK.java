@@ -65,6 +65,12 @@ public class AllSubsequencesProductLessThanK
 
     }
 
+    /**
+     *
+     * Bottom up approach.
+     *
+     *
+     */
     static int computeProduct(int arr[], int k) {
 
         int n = arr.length;
@@ -94,8 +100,8 @@ public class AllSubsequencesProductLessThanK
         int k =10;
         System.out.println(computeProductDFS(arr1, k));
 
-        int arr2[] ={4, 8, 7, 2};
-        int k2 = 50;
-        System.out.println(computeProduct(arr2, k2));
+//        int arr2[] ={4, 8, 7, 2};
+//        int k2 = 50;
+//        System.out.println(computeProduct(arr2, k2));
     }
 }
