@@ -1,22 +1,19 @@
 package dp;
 
 /**
- *
  * Minimum edits required to make 2 strings equivalent.
- *   "sunday"
- *   "saturday"
- *
+ * "sunday"
+ * "saturday"
  * This is also called Levenshtein distance.
- *
  * dp[i][j] = 1 + min(dp[i][j - 1], // Insert
- *            dp[i - 1][j], // Remove
- *            dp[i - 1][j - 1]); // Replace
- *
+ * dp[i - 1][j], // Remove
+ * dp[i - 1][j - 1]); // Replace
  */
 
-public class EditDistance {
+public class EditDistance
+{
 
-    static int editDistDP(String str1, String str2, int m, int n)
+    static int editDistDP (String str1, String str2, int m, int n)
     {
         int dp[][] = new int[m + 1][n + 1];
 
@@ -41,18 +38,17 @@ public class EditDistance {
                     // possibilities and find the minimum
                 else
                     dp[i][j] = 1 + Math.min(dp[i][j - 1],
-                            Math.min(dp[i - 1][j],
-                            dp[i - 1][j - 1]));
+                        Math.min(dp[i - 1][j], dp[i - 1][j - 1]));
             }
         }
 
         return dp[m][n];
     }
 
-    public static void main(String args[])
+    public static void main (String args[])
     {
-//        String str1 = "sunday";
-//        String str2 = "saturday";
+        //        String str1 = "sunday";
+        //        String str2 = "saturday";
         String str1 = "a";
         String str2 = "ab";
         System.out.println(editDistDP(str1, str2, str1.length(), str2.length()));

@@ -1,10 +1,12 @@
 package dp;
 
-public class LongestIncreasingSubsequence {
+public class LongestIncreasingSubsequence
+{
 
     /* lis() returns the length of the longest increasing
        subsequence in arr[] of size n */
-    static int lis(int arr[],int n) {
+    static int lis (int arr[], int n)
+    {
         int lis[] = new int[n];
         int i, j, max = 0;
 
@@ -25,10 +27,11 @@ public class LongestIncreasingSubsequence {
 
         return max;
     }
-        public static void main(String args[])
+
+    public static void main (String args[])
     {
         int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
         int n = arr.length;
-        System.out.println("Length of lis is " + lis( arr, n ) + "\n" );
+        System.out.println("Length of lis is " + lis(arr, n) + "\n");
     }
 }

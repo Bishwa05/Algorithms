@@ -1,4 +1,5 @@
 package dp;
+
 /*
 Maximum subsequence sum such that no three are consecutive
 
@@ -50,9 +51,10 @@ sum[i] = max(sum[i-1], sum[i-2] + arr[i],
              sum[i-3] + arr[i] + arr[i-1])
 
  */
-public class MaxSubSequenceSum {
+public class MaxSubSequenceSum
+{
 
-    static int maxSumWO3Consec(int arr[])
+    static int maxSumWO3Consec (int arr[])
     {
         int n = arr.length;
         int sumArr[] = new int[n];
@@ -64,23 +66,20 @@ public class MaxSubSequenceSum {
             sumArr[1] = arr[0] + arr[1];
 
         if (n > 2)
-            sumArr[2] = Math.max(sumArr[1],
-                    Math.max(arr[1] + arr[2], arr[0] + arr[2]));
+            sumArr[2] = Math.max(sumArr[1], Math.max(arr[1] + arr[2], arr[0] + arr[2]));
 
-
-
-        for(int i=3; i<n; i++)
-        {
-            sumArr[i] = Math.max(sumArr[i-1], Math.max(
-                    sumArr[i-2] + arr[i],  sumArr[i-3] + arr[i] + arr[i-1]
-            ));
+        for (int i = 3; i < n; i++) {
+            sumArr[i] = Math.max(
+                sumArr[i - 1],
+                Math.max(sumArr[i - 2] + arr[i], sumArr[i - 3] + arr[i] + arr[i - 1]));
         }
 
-        return sumArr[n-1];
+        return sumArr[n - 1];
 
     }
 
-    public static void main(String arg[]) {
+    public static void main (String arg[])
+    {
         int arr[] = { 100, 1000, 100, 1000, 1 };
 
         System.out.println(maxSumWO3Consec(arr));
