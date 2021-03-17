@@ -16,7 +16,7 @@ package binarysearch;
 public class SearchInRotatedSortedArray
 {
 
-    public int serach(int[] nums, int target){
+    public int search(int[] nums, int target){
         int smallestIndex = -1;
         int n = nums.length;
 
@@ -48,5 +48,41 @@ public class SearchInRotatedSortedArray
             }
         }
         return -1;
+    }
+
+
+    public int search2(int[] nums, int target) {
+        if (null == nums || 0 == nums.length)
+            return -1;
+
+        int lo = 0;
+        int hi = nums.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] == target)
+                return mid;
+
+            // We are using mid of the array as well to find the index
+            if (nums[mid] >= nums[lo]) {
+                if (target >= nums[lo] && target < nums[mid])
+                    hi = mid - 1;
+                else
+                    lo = mid + 1;
+            } else {
+                if (target <= nums[hi] && target > nums[mid])
+                    lo = mid + 1;
+                else
+                    hi = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+
+    public static void main(String arg[]){
+        SearchInRotatedSortedArray s = new SearchInRotatedSortedArray();
+        int nums[] = {4,5,7,0,1,2};
+        System.out.println(s.search2(nums, 0));
     }
 }
