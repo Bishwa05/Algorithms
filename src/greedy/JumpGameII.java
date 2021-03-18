@@ -17,14 +17,17 @@ public class JumpGameII
 {
     public int jump(int[] nums) {
         int len = nums.length;
+        if(len ==1) return 0;
         int count =0;
         int max = 0;
-        for(int i=0; i<=max; i++){
-            if(i+nums[i]> max){
-                max = i+nums[i];
-                count ++;
+        int curPos = 0;
+        for(int i=0; i<=nums.length; i++){
+            max = Math.max(max, i + nums[i]);
+            if (i == curPos) {
+                count++;
+                curPos = max;
             }
-            if(max >= len-1)  return count;
+            if(curPos >= len-1)  return count;
         }
         return 0;
     }
