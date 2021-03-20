@@ -1,7 +1,17 @@
 package dp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ *
+ * Leetcode 300. Longest Increasing Subsequence
+ */
 public class LongestIncreasingSubsequence
 {
+
+
 
     /* lis() returns the length of the longest increasing
        subsequence in arr[] of size n */
@@ -28,10 +38,49 @@ public class LongestIncreasingSubsequence
         return max;
     }
 
+    /**
+     * Binary Search
+     */
+    public static int lisBS(int[] arr, int n){
+
+        int[] dp = new int[arr.length];
+        int len = 0;
+        for (int num : arr) {
+            int i = Arrays.binarySearch(dp, 0, len, num);
+            if (i < 0) {
+                i = -(i + 1);
+            }
+            dp[i] = num;
+            if (i == len) {
+                len++;
+            }
+        }
+        return len;
+
+    }
+
+    /**
+     * DFS
+     */
+    public int lengthOfLLIS(int[] nums){
+        return lengthOfLIS(nums, Integer.MIN_VALUE, 0);
+    }
+
+    public int lengthOfLIS(int[] nums, int prev, int curPos){
+        if(curPos == nums.length) return 0;
+
+        int taken = 0;
+        if(nums[curPos] > prev){
+            taken = 1 + lengthOfLIS(nums, nums[curPos], curPos +1);
+        }
+        int notTaken = lengthOfLIS(nums, prev, curPos+1);
+        return Math.max(taken, notTaken);
+    }
+
     public static void main (String args[])
     {
         int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
         int n = arr.length;
-        System.out.println("Length of lis is " + lis(arr, n) + "\n");
+        System.out.println("Length of lis is " + lisBS(arr, n) + "\n");
     }
 }
