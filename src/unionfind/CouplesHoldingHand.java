@@ -67,9 +67,36 @@ public class CouplesHoldingHand
         return N - dsu.count;
     }
 
+    /**
+     * Another approach from Erichto
+     */
+    public boolean match(int a, int b){
+        return (a ^ b) == 1;
+    }
+    public void swap(int arr[], int i, int j){
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+    public int minSwapsCouplesItr(int[] row) {
+        int operations =0;
+        for(int i =0; i< row.length; i+=2){
+            if(!match(row[i], row[i+1])){
+                for(int j =i+1; i< row.length; j++){
+                    if(match(row[i], row[j])){
+                        swap(row, i+1, j);
+                        operations++;
+                        break;
+                    }
+                }
+            }
+        }
+        return operations;
+    }
+
     public static void main(String arg[]){
         CouplesHoldingHand c = new CouplesHoldingHand();
         int nums[] = {0, 2, 1, 3};
-        System.out.println(c.minSwapsCouples(nums));
+        System.out.println(c.minSwapsCouplesItr(nums));
     }
 }
