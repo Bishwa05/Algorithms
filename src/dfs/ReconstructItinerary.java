@@ -1,7 +1,6 @@
 package dfs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Leetcode
@@ -46,6 +45,28 @@ public class ReconstructItinerary
         }
     }
 
+    /**
+     * Handles all the cases
+     */
+    public List<String> findItineraryItr(List<List<String>> tickets) {
+        Map<String, PriorityQueue<String>> g = new HashMap<>();
+        for(List<String> t : tickets){
+            g.computeIfAbsent(t.get(0), k -> new PriorityQueue<>()).add(t.get(1));
+        }
+
+        Deque<String> stack = new ArrayDeque<>();
+        LinkedList<String> route = new LinkedList<>();
+        stack.push("JFK");
+
+        while(!stack.isEmpty()){
+            while(g.containsKey(stack.peek()) && !g.get(stack.peek()).isEmpty()){
+                stack.push(g.get(stack.peek()).poll());
+            }
+            route.addFirst(stack.pop());
+        }
+        return route;
+    }
+
     public static void main(String arg[]){
         ReconstructItinerary r = new ReconstructItinerary();
         List<List<String>> tickets = new ArrayList();
@@ -69,7 +90,7 @@ public class ReconstructItinerary
         l4.add("SFO");
         tickets.add(l4);
 
-        r.findItinerary(tickets).forEach(e -> System.out.println(e));
+        r.findItineraryItr(tickets).forEach(e -> System.out.println(e));
 
     }
 
