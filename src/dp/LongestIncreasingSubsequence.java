@@ -39,6 +39,20 @@ public class LongestIncreasingSubsequence
     }
 
     /**
+     *
+     * Quadratic DP
+     *
+     * for(int i =0; i<n; i++){
+     *     for(int j = i+1; j<n; j++){
+     *         if(nums[i]< nums[j]){
+     *             dp[j] = max(dp[j], dp[i]+1);
+     *         }
+     *     }
+     * }
+     *
+     */
+
+    /**
      * Binary Search
      */
     public static int lisBS(int[] arr, int n){
@@ -81,6 +95,6 @@ public class LongestIncreasingSubsequence
     {
         int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
         int n = arr.length;
-        System.out.println("Length of lis is " + lisBS(arr, n) + "\n");
+        System.out.println("Length of lis is " + lis(arr, n) + "\n");
     }
 }

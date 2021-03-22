@@ -54,6 +54,14 @@ sum[i] = max(sum[i-1], sum[i-2] + arr[i],
 public class MaxSubSequenceSum
 {
 
+    /**
+     *
+     */
+
+    /**
+     *  DP approach
+     *
+     */
     static int maxSumWO3Consec (int arr[])
     {
         int n = arr.length;

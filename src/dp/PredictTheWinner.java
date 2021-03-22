@@ -2,6 +2,9 @@ package dp;
 
 public class PredictTheWinner
 {
+    /**
+     *  DFS.
+     */
     public boolean predictTheWinner (int[] nums)
     {
         if (nums.length == 1)
