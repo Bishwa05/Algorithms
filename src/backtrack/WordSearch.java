@@ -29,7 +29,7 @@ public class WordSearch
         int m = board.length;
         int n = board[0].length;
 
-        if(i<0 || i>m || j<0 || j>n) return false;
+        if(i<0 || i>m || j<0 || j>n || board[i][j] != word.charAt(pos)) return false;
 
         board[i][j] ='*';
 
