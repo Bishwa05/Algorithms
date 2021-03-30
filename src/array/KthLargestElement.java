@@ -61,9 +61,12 @@ public class KthLargestElement {
     }
 
     public static void main(String arg[]) {
-        int arr[] = {3,2,5,1,2,4,5,5,6,3};
-        int k =3;
+//        int arr[] = {3,2,5,1,2,4,5,5,6,3};
+//        int k =3;
         // System.out.println(findKthLargest(arr, k));
+
+        int arr[] = {3,2,5,-1, -6, 7};
+        int k =2;
 
         KthLargestElement l = new KthLargestElement();
         System.out.println(l.findKthLargest2(arr, k));
