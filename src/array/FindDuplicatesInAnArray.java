@@ -43,9 +43,29 @@ public class FindDuplicatesInAnArray {
         }
     }
 
+    public static int findDuplicate(int[] nums) {
+        // Find the intersection point of the two runners.
+        int tortoise = nums[0];
+        int hare = nums[0];
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+
+        // Find the "entrance" to the cycle.
+        tortoise = nums[0];
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
+        }
+        System.out.println(hare);
+        return hare;
+    }
+
     public static void main(String[] args) {
-        int a[] = {1, 6, 5, 2, 3, 3, 2};
+        int a[] = {1, 6, 2, 5, 3, 2, 3};
         //hasDuplicates(a);
-        hasDuplicateWithNolimitation(a);
+        //hasDuplicateWithNolimitation(a);
+        findDuplicate(a);
     }
 }
