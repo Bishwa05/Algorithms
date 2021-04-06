@@ -177,6 +177,22 @@ class Edge<T>{
         this.isDirected = isDirected;
     }
 
+    Vertex<T> getVertex1(){
+        return vertex1;
+    }
+
+    Vertex<T> getVertex2(){
+        return vertex2;
+    }
+
+    int getWeight(){
+        return weight;
+    }
+
+    public boolean isDirected(){
+        return isDirected;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
