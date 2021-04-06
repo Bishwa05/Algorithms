@@ -26,7 +26,7 @@ public class PossibleBipartition
     public boolean possibleBipartition(int N, int[][] dislikes){
         List<Integer> []dislikesArr = new List[N+1];
 
-        for(int i =0; i< dislikes.length; i++){
+        for(int i =0; i< dislikesArr.length; i++){
             dislikesArr[i] = new ArrayList<>();
         }
 
@@ -38,12 +38,23 @@ public class PossibleBipartition
         int [] group = new int[N+1];
         Arrays.fill(group, -1);
 
-        for(int i =1; i<=N; i++){
+            // for dfs
+//        for(int i =1; i<=N; i++){
+//
+//            if(group[i] == -1 && !paint(group, i, dislikesArr, 0)){
+//                return false;
+//            }
+//        }
 
-            if(group[i] == -1 && !paint(group, i, dislikesArr, 0)){
-                return false;
-            }
-        }
+                // For bfs
+                for(int i =1; i<=N; i++){
+                    if(group[i] == -1) {
+                        group[i] = 0;
+                        if (!paintBfs(group, i, dislikesArr, 0)) {
+                            return false;
+                        }
+                    }
+                }
         return true;
     }
 
@@ -72,19 +83,29 @@ public class PossibleBipartition
         while(!q.isEmpty()){
             int id = q.poll();
 
-            group[id] = color;
+            for(int i =0; i< dislikesArr[id].size(); i++){
+                int nextIndex = dislikesArr[id].get(i);
 
-            for(int i =0; i< dislikesArr[index].size(); i++){
-                int nextIndex = dislikesArr[index].get(i);
-
-                if(group[nextIndex] == color) return false;
+                if(group[nextIndex] == group[id]) return false;
 
                 if(group[nextIndex] == -1){
+                    group[nextIndex] = 1 - group[id];
                     q.offer(nextIndex);
                 }
             }
         }
         return true;
+
+    }
+
+    public static void main(String arg[]){
+        //3
+        int[][] dislikes = {{1,2},{1,3},{2,4}};
+
+        //int[][] dislikes = {{1,2},{1,3},{2,3}};
+
+        PossibleBipartition p = new PossibleBipartition();
+        System.out.println(p.possibleBipartition(4, dislikes));
 
     }
 }
