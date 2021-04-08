@@ -5,6 +5,22 @@ package dp;
  */
 public class DecodingWays
 {
+    static int count =0;
+    public void dfs(String s, int i){
+
+        if (i >= s.length()) {
+            count++;
+            return;
+        }
+        if (s.charAt(i) == '0') return; // handle cases like 210 or 1010.
+        dfs(s, i + 1);
+        if (i + 1 < s.length()) {
+            if (s.charAt(i) == '1' || s.charAt(i) == '2' && s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '6') {
+                dfs(s, i + 2);
+            }
+        }
+
+    }
 
     public int numDecodings (String s)
     {
@@ -31,7 +47,9 @@ public class DecodingWays
     public static void main (String arg[])
     {
         DecodingWays d = new DecodingWays();
-        System.out.println(d.numDecodings("226"));
+        System.out.println(d.numDecodings("12615"));
+        d.dfs("12615", 0);
+        System.out.println(count);
     }
 
 }

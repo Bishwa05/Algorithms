@@ -25,6 +25,13 @@ package dp;
 public class FriendsPairing
 {
 
+    static int dfs(int n){
+        if(n <=2){
+            return n;
+        }
+        return dfs(n-1) + (n-1) * dfs(n-2);
+    }
+
     static int countFriendsPairings (int n)
     {
         int dp[] = new int[n + 1];
@@ -43,7 +50,8 @@ public class FriendsPairing
 
     public static void main (String arg[])
     {
-        int n = 3;
+        int n = 5;
         System.out.println(countFriendsPairings(n));
+        System.out.println(dfs(n));
     }
 }

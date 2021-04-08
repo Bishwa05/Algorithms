@@ -13,6 +13,16 @@ package dp;
  */
 public class CuttingRod
 {
+    public static  int dfs(int price[], int n) {
+
+        if(n ==0) return 0;
+        int max =0;
+        for(int i=1; i<= n; i++){
+            max = Math.max(max, dfs(price, n-i) +price[i-1]);
+
+        }
+        return max;
+    }
 
     static int cutRod (int price[], int n)
     {
@@ -35,6 +45,6 @@ public class CuttingRod
     {
         int arr[] = new int[] { 1, 5, 8, 9, 10, 17, 17, 20 };
         int size = arr.length;
-        System.out.println("Maximum Obtainable Value is " + cutRod(arr, size));
+        System.out.println("Maximum Obtainable Value is " + dfs(arr, size));
     }
 }
