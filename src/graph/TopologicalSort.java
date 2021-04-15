@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  *                  A           B
@@ -48,6 +45,97 @@ public class TopologicalSort<T> {
             topSortUtil(childVertex,stack,visited);
         }
         stack.offerFirst(vertex);
+    }
+
+    /**
+     *
+     *      Algorithm: Steps involved in finding the topological ordering of a DAG:
+     * Step-1: Compute in-degree (number of incoming edges) for each of the vertex present in the DAG and initialize the count of visited nodes as 0.
+     *
+     * Step-2: Pick all the vertices with in-degree as 0 and add them into a queue (Enqueue operation)
+     *
+     * Step-3: Remove a vertex from the queue (Dequeue operation) and then.
+     *
+     * Increment count of visited nodes by 1.
+     * Decrease in-degree by 1 for all its neighboring nodes.
+     * If in-degree of a neighboring nodes is reduced to zero, then add it to the queue.
+     * Step 4: Repeat Step 3 until the queue is empty.
+     *
+     * Step 5: If count of visited nodes is not equal to the number of nodes in the graph then the topological sort is not possible for the given graph.
+     *
+     * How to find in-degree of each node?
+     * There are 2 ways to calculate in-degree of every vertex:
+     *
+     * Take an in-degree array which will keep track of
+     * Traverse the array of edges and simply increase the counter of the destination node by 1.
+     * for each node in Nodes
+     *     indegree[node] = 0;
+     * for each edge(src, dest) in Edges
+     *     indegree[dest]++
+     * Time Complexity: O(V+E)
+     *
+     * Traverse the list for every node and then increment the in-degree of all the nodes connected to it by 1.
+     *     for each node in Nodes
+     *         If (list[node].size()!=0) then
+     *         for each dest in list
+     *             indegree[dest]++;
+     * Time Complexity: The outer for loop will be executed V number of times and the inner for loop will be executed E number of times, Thus overall time complexity is O(V+E).
+     *
+     * The overall time complexity of the algorithm is O(V+E)
+     *
+     *
+     */
+
+    public void topologicalSort(Graph G)
+    {
+
+//        int V =5;
+//        int indegree[] = new int[V];
+//
+//        for (int i = 0; i < V; i++) {
+//            ArrayList<Integer> temp
+//                = (ArrayList<Integer>)adj[i];
+//            for (int node : temp) {
+//                indegree[node]++;
+//            }
+//        }
+//
+//
+//        Queue<Integer> q
+//            = new LinkedList<>();
+//        for (int i = 0; i < V; i++) {
+//            if (indegree[i] == 0)
+//                q.add(i);
+//        }
+//
+//
+//        int cnt = 0;
+//
+//        Vector<Integer> topOrder = new Vector<Integer>();
+//        while (!q.isEmpty()) {
+//
+//            int u = q.poll();
+//            topOrder.add(u);
+//
+//            for (int node : adj[u]) {
+//
+//                if (--indegree[node] == 0)
+//                    q.add(node);
+//            }
+//            cnt++;
+//        }
+//
+//        // Check if there was a cycle
+//        if (cnt != V) {
+//            System.out.println(
+//                "There exists a cycle in the graph");
+//            return;
+//        }
+
+        // Print topological order
+//        for (int i : topOrder) {
+//            System.out.print(i + " ");
+//        }
     }
 
     public static void main(String args[]){

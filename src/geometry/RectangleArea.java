@@ -36,6 +36,4 @@ public class RectangleArea
 
         return area1 + area2;
     }
-
-
 }
