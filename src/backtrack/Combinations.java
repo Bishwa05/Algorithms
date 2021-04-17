@@ -44,7 +44,7 @@ public class Combinations
             return;
         }
 
-        for(int i =pos; i<n; i++){
+        for(int i =pos; i<=n; i++){
             temp.add(i);
             backtrack(n, k-1, i+1, res, temp);
             temp.remove(temp.size() -1);
@@ -52,5 +52,14 @@ public class Combinations
 
     }
 
+
+    public static void main(String arg[]){
+        Combinations c = new Combinations();
+        c.combine(4, 2).forEach(
+            e-> {
+                System.out.println(e.get(0)+":"+e.get(1));
+            }
+        );
+    }
 
 }
