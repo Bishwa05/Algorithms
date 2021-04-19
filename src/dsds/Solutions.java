@@ -55,7 +55,7 @@ import java.util.regex.*;
 public class Solutions {
 
     private static List <Map<Integer,Set<Integer>>>disjointSet = new ArrayList<Map<Integer,Set<Integer>>>();
-    // public Solution(){
+    // public misc.CapacityToShipPackagesWithinDDays(){
     //     disjointSet = new ArrayList<Map<Integer,Set<Integer>>>();
     // }
 
@@ -136,7 +136,7 @@ public class Solutions {
 
 
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named misc.CapacityToShipPackagesWithinDDays. */
 
         Scanner sc = new Scanner(System.in);
         int people = sc.nextInt();
