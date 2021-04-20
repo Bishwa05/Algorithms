@@ -10,6 +10,8 @@ package strings;
  *
  * Input: "cbbd"
  * Output: "bb"
+ *
+ * Time complexity : O(n^2)
  */
 
 public class LongestPalindromicSubString {
