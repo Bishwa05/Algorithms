@@ -88,8 +88,10 @@ public class MaximumRectangle
 
     public static void main (String arg[])
     {
-        char[][] ch = { { '1', '0', '1', '0', '0' }, { '1', '0', '1', '1', '1' },
-                        { '1', '1', '1', '1', '1' }, { '1', '0', '0', '1', '0' } };
+        char[][] ch = { { '1', '0', '1', '0', '0' },
+                        { '1', '0', '1', '1', '1' },
+                        { '1', '1', '1', '1', '1' },
+                        { '1', '0', '0', '1', '0' } };
         MaximumRectangle m = new MaximumRectangle();
 
         System.out.println(m.findMaxArea(ch));

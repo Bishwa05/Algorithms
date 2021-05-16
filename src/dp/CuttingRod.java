@@ -24,6 +24,23 @@ public class CuttingRod
         return max;
     }
 
+    // Memo populate cache in util method with size+1
+    static int cache[] = new int[9];
+    public static int dfsMemo(int []price, int n){
+
+        if(n ==0) return 0;
+        if(cache[n] >0) return cache[n];
+
+
+        int max = 0;
+        for(int i =1; i<=n; i++){
+            max = Math.max(max, dfsMemo(price,n-i) + price[i-1]);
+        }
+        cache[n] = max;
+        return max;
+
+    }
+
     static int cutRod (int price[], int n)
     {
         int val[] = new int[n + 1];
@@ -45,6 +62,6 @@ public class CuttingRod
     {
         int arr[] = new int[] { 1, 5, 8, 9, 10, 17, 17, 20 };
         int size = arr.length;
-        System.out.println("Maximum Obtainable Value is " + dfs(arr, size));
+        System.out.println("Maximum Obtainable Value is " + dfsMemo(arr, size));
     }
 }
