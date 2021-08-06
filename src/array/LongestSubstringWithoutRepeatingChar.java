@@ -52,7 +52,7 @@ public class LongestSubstringWithoutRepeatingChar {
 
 
     public static void main(String arg[]) {
-        String str = "dvdf";
+        String str = "pwwkew";
         System.out.println(getNonRepCharLength(str));
     }
 }

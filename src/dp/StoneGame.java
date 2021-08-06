@@ -25,6 +25,27 @@ public class StoneGame
         return dp[1][N] > 0;
     }
 
+    /**
+     *
+     * Approach 2
+     * @param
+     */
+    public boolean stoneGame2(int[] piles) {
+        int i =0;
+        int j = piles.length -1;
+        int sumAlex = 0, sumLee=0;
+
+        while(i<j){
+            sumAlex += Math.max(piles[i], piles[j]);
+            sumLee += Math.min(piles[i], piles[j]);
+            i++;
+            j--;
+        }
+        if(sumAlex > sumLee) return true;
+        return false;
+    }
+
+
     public static void main (String arg[])
     {
         int[] piles = { 5, 3, 4, 5 };

@@ -19,7 +19,7 @@ public class KthLargestElement {
      */
 
     public int findKthLargest2(int[] nums, int k) {
-        k = nums.length -k;
+        k = nums.length -k; // this is the difference in finding largest and smallest
        int low =0;
        int hi = nums.length -1;
 
