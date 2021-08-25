@@ -38,9 +38,9 @@ public class LetterCombinationOfPhoneNumber {
             // iterate over all letters which map
             // the next available digit
             String digit = next_digits.substring(0, 1);
-            String letters = phone.get(digit);
+                String letters = phone.get(digit);
             for (int i = 0; i < letters.length(); i++) {
-                String letter = phone.get(digit).substring(i, i + 1);
+                String letter = letters.substring(i, i + 1);
                 // append the current letter to the combination
                 // and proceed to the next digits
                 backtrack(combination + letter, next_digits.substring(1));
