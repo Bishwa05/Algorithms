@@ -43,6 +43,7 @@ public class EvaluateDivision {
             if(!map.containsKey(pair.get(1))) {
                 map.put(pair.get(1), index++);
             }
+            //map
         }
 
         int n = map.size();

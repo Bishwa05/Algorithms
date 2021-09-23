@@ -1,6 +1,6 @@
 package array;
 
-public class MinimumOperationsToMakeTheArrayIncreasing
+public class    MinimumOperationsToMakeTheArrayIncreasing
 {
 
     public int minOperations(int[] nums) {

@@ -1,7 +1,7 @@
 package array;
 
 /**
- * Whether array has continously increasing or decreasing elements
+ * Whether array has continuously increasing or decreasing elements
  */
 public class MonotonicArray
 {

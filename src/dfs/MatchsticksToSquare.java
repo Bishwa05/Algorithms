@@ -67,7 +67,7 @@ public class MatchsticksToSquare
         for(int i =0; i<L; i++){
             perimeter += nums[i];
         }
-        this.possibleSquareSide = perimeter/4;
+            this.possibleSquareSide = perimeter/4;
 
         if(this.possibleSquareSide * 4 != perimeter){
             return false;

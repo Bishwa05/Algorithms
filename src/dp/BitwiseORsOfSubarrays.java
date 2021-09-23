@@ -20,7 +20,7 @@ import java.util.Set;
  * must have more 1s in it's binary representation (to a maximum of 32 ones).
  */
 
-public class BitwiseORsOfSubarrays
+public class    BitwiseORsOfSubarrays
 {
     public int subarrayBitwiseORs (int[] A)
     {

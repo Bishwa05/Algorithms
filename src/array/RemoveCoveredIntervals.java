@@ -36,8 +36,6 @@ public class RemoveCoveredIntervals {
                     remaining -=1;
                     break;
                 }
-
-
             }
 
         }
