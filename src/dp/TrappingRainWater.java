@@ -23,7 +23,7 @@ package dp;
  */
 public class TrappingRainWater
 {
-    public int trap(int[] height) {
+    public int trapDP(int[] height) {
         int totalWater = 0;
         int leftArr[] = new int[height.length];
         int rightArr[] = new int[height.length];
@@ -48,11 +48,52 @@ public class TrappingRainWater
         return totalWater;
     }
 
+    /**
+     *
+     * 2 Pointers approach
+     *
+     *      Initialize left pointer to 0 and right pointer to size-1
+     *      While left<right, do:
+     *          If height[left] is smaller than height[right]
+     * 	            If height[left]≥left_max, update left_max
+     * 	            Else add left_max−height[left] to ans
+     * 	            Add 1 to left.
+     *         Else
+     * 	            If height[right]≥right_max, update right_max
+     * 	            Else add right_max−height[right] to ans
+     * 	            Subtract 1 from right.
+     */
+
+    public int trap2Pointer(int[] height){
+        int left =0, right = height.length-1, ans = 0;
+        int leftMax = 0;
+        int rightMax = 0;
+
+        while(left < right){
+            if(height[left]< height[right]){
+                if(height[left]>= leftMax){
+                    leftMax = height[left];
+                } else {
+                    ans += leftMax - height[left];
+                }
+                left++;
+            } else {
+                if(height[right]>= rightMax) {
+                    rightMax = height[right];
+                } else {
+                    ans += rightMax - height[right];
+                }
+                right--;
+            }
+        }
+        return ans;
+    }
+
     public static void main (String[] args)
     {
         TrappingRainWater t = new TrappingRainWater();
         int[] height = {4,2,0,3,2,5};
-        System.out.println(t.trap(height));
+        System.out.println(t.trap2Pointer(height));
 
         /** Dry run
          * leftArr = [4,4,4,4,4,5]
