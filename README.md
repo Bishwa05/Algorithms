@@ -1,6 +1,7 @@
 # Algorithms
 
-This repo is only for educational purpose. Most of the  questions are taken from leetcode. Though there are questions from other sources.
+This repo is only for educational purpose. Most of the  questions are taken from https://leetcode.com/. 
+Though there are questions from other sources.
 Contributions are welcome. You can fork the repo and create a pull request.
 
 Arrays : https://github.com/Bishwa05/Algorithms/tree/master/src/array <br/>
