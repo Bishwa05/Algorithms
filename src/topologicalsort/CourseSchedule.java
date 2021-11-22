@@ -30,6 +30,7 @@ import java.util.*;
  */
 public class CourseSchedule {
 
+    // (Kahn's Algorithm)
     public static boolean canFinish(int numCourses, int [][] prerequisites) {
         Map<Integer, List<Integer>> adj = new HashMap<>();
         int [] inDegree = new int[numCourses];
