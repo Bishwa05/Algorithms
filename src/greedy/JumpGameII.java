@@ -21,7 +21,7 @@ public class JumpGameII
         int count =0;
         int max = 0;
         int curPos = 0;
-        for(int i=0; i<=nums.length; i++){
+        for(int i=0; i<nums.length; i++){
             max = Math.max(max, i + nums[i]);
             if (i == curPos) {
                 count++;
@@ -35,7 +35,8 @@ public class JumpGameII
 
     public static void main(String arg[]){
         JumpGameII j = new JumpGameII();
-        int[] nums = {2,0,3,1,4};
+        int[] nums = {1,0,3,1,4};
+        //int[] nums = {2,0,3,1,4};
         System.out.println(j.jump(nums));
     }
 }
