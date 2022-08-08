@@ -73,6 +73,24 @@ public class LongestIncreasingSubsequence
 
     }
 
+    public static int lengthOfLISBS(int[] nums) {
+        int[] dp = new int[nums.length]; //'dp' array will be an array with increasing order.
+        int size = 0;
+        for (int x : nums) {
+            int i = 0, j = size;
+            while (i != j) {
+                int m = (i + j) / 2;
+                if (dp[m] < x)
+                    i = m + 1;
+                else
+                    j = m;
+            }
+            dp[i] = x;
+            if (i == size) ++size;
+        }
+        return size;
+    }
+
     /**
      * DFS
      */
@@ -95,6 +113,6 @@ public class LongestIncreasingSubsequence
     {
         int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 };
         int n = arr.length;
-        System.out.println("Length of lis is " + lis(arr, n) + "\n");
+        System.out.println("Length of lis is " + lengthOfLISBS(arr) + "\n");
     }
 }
