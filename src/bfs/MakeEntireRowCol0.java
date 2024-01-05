@@ -25,7 +25,7 @@ public class MakeEntireRowCol0 {
         int[][] dir = new int [][] {{1,0}, {0,1}, {-1, 0}, {0, -1}};
         Set<Pair> pairSet = new HashSet<>();
         pairSet.add(new Pair<>(0,0));
-        while(!q.isEmpty()){
+        while(!q.isEmpty()) {
             Pair<Integer,Integer> index = q.poll();
 
             if(mat[index.getKey()][index.getValue()] == 0) {
@@ -46,7 +46,6 @@ public class MakeEntireRowCol0 {
                 }
             }
         }
-
 
         for(int i = 0; i< mat.length; i++){
             for(int j = 0; j< mat[0].length; j++){
