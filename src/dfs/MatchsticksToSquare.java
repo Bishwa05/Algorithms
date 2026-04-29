@@ -1,6 +1,6 @@
 package dfs;
 
-import javafx.util.Pair;
+// import javafx.util.Pair;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -75,12 +75,12 @@ public class MatchsticksToSquare
 
         this.nums = Arrays.stream(nums).boxed().collect(Collectors.toList());
         Collections.sort(this.nums, Collections.reverseOrder());
-        //return this.dfs(0);
+        return this.dfs(0);
 
         // DP
-        this.nums2 = nums;
-        this.memo = new HashMap<Pair<Integer, Integer>, Boolean>();
-        return this.recurse((1 << L) - 1, 0);
+//        this.nums2 = nums;
+//        this.memo = new HashMap<Pair<Integer, Integer>, Boolean>();
+//        return this.recurse((1 << L) - 1, 0);
 
     }
 
@@ -89,61 +89,61 @@ public class MatchsticksToSquare
      *
      * DP approach
      */
-    public HashMap<Pair<Integer, Integer>, Boolean> memo;
-    public int[] nums2;
+//    public HashMap<Pair<Integer, Integer>, Boolean> memo;
+//    public int[] nums2;
+////
+////    public int possibleSquareSide;
 //
-//    public int possibleSquareSide;
+//    //this.memo = new HashMap<Pair<Integer, Integer>, Boolean>();
+//
+//    public boolean recurse(Integer mask, Integer sidesDone){
+//        int total = 0;
+//        int L = this.nums2.length;
+//
+//        Pair<Integer, Integer> memoKey = new Pair(mask, sidesDone);
+//
+//        for(int i = L-1; i>=0; i--){
+//            if((mask &(1<<i))==0){
+//                total += this.nums2[L-1-i];
+//            }
+//        }
 
-    //this.memo = new HashMap<Pair<Integer, Integer>, Boolean>();
-
-    public boolean recurse(Integer mask, Integer sidesDone){
-        int total = 0;
-        int L = this.nums2.length;
-
-        Pair<Integer, Integer> memoKey = new Pair(mask, sidesDone);
-
-        for(int i = L-1; i>=0; i--){
-            if((mask &(1<<i))==0){
-                total += this.nums2[L-1-i];
-            }
-        }
-
-
-        // If the sum if divisible by our square's side, then we increment our number of complete sides formed variable.
-        if (total > 0 && total % this.possibleSquareSide == 0) {
-            sidesDone++;
-        }
-
-        // Base case.
-        if (sidesDone == 3) {
-            return true;
-        }
-
-        // Return precomputed results
-        if (this.memo.containsKey(memoKey)) {
-            return this.memo.get(memoKey);
-        }
-
-
-        boolean ans = false;
-        int c = total / this.possibleSquareSide;
-
-        // Remaining vlength in the current partially formed side.
-        int rem = this.possibleSquareSide * (c + 1) - total;
-
-        // Try out all remaining options (that are valid)
-        for(int i = L - 1; i >= 0; i--) {
-            if (this.nums2[L - 1 - i] <= rem && (mask&(1 << i)) > 0) {
-                if (this.recurse(mask ^ (1 << i), sidesDone)) {
-                    ans = true;
-                    break;
-                }
-            }
-        }
-
-        // Cache the computed results.
-        this.memo.put(memoKey, ans);
-        return ans;
-
-    }
+//
+//        // If the sum if divisible by our square's side, then we increment our number of complete sides formed variable.
+//        if (total > 0 && total % this.possibleSquareSide == 0) {
+//            sidesDone++;
+//        }
+//
+//        // Base case.
+//        if (sidesDone == 3) {
+//            return true;
+//        }
+//
+//        // Return precomputed results
+//        if (this.memo.containsKey(memoKey)) {
+//            return this.memo.get(memoKey);
+//        }
+//
+//
+//        boolean ans = false;
+//        int c = total / this.possibleSquareSide;
+//
+//        // Remaining vlength in the current partially formed side.
+//        int rem = this.possibleSquareSide * (c + 1) - total;
+//
+//        // Try out all remaining options (that are valid)
+//        for(int i = L - 1; i >= 0; i--) {
+//            if (this.nums2[L - 1 - i] <= rem && (mask&(1 << i)) > 0) {
+//                if (this.recurse(mask ^ (1 << i), sidesDone)) {
+//                    ans = true;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        // Cache the computed results.
+//        this.memo.put(memoKey, ans);
+//        return ans;
+//
+//    }
 }

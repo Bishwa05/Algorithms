@@ -1,6 +1,6 @@
 package greedy;
 
-import org.omg.Messaging.SyncScopeHelper;
+// import org.omg.Messaging.SyncScopeHelper;
 
 import java.util.ArrayList;
 import java.util.Collection;

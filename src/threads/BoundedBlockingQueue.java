@@ -157,7 +157,7 @@ public class BoundedBlockingQueue<T>
 
         //if queue worked as expected all integers in result array should have value 2
         for(AtomicInteger i : result){
-            if(i.get() != 2){
+            if(i.get() != 2) {
                 throw new RuntimeException(String.valueOf(i));
             }
         }
