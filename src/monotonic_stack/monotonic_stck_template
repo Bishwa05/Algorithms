@@ -1,0 +1,29 @@
+Code Template for Monotonically Increasing Stack
+
+1. create an empty stack
+2. for each element in the array:
+    a. while stack is not empty AND top of the stack is greater than the current element:
+    b.    pop the stack
+    c. push the current element to stack
+
+
+Code Template for Monotonically Decreasing Stack
+
+1. create an empty stack
+2. for each element in the array:
+    a. while stack is not empty AND top of the stack is smaller than the current element:
+    b.     pop the stack
+    c. push the current element to stack
+
+Time Complexity for Monotonically Increasing Stack
+
+ In a Monotonically Increasing Stack, each element from the input array is pushed and popped
+ from the stack exactly once. Therefore, even though there is a loop inside a loop, no element is
+ processed more than twice. Hence, the time complexity of building a Monotonically Increasing Stack
+ is O(N), where N is the number of elements in the array.
+
+Time Complexity for Monotonically Decreasing Stack
+
+ The situation is similar for a Monotonically Decreasing Stack. Each element is processed only twice,
+ once for the push operation and once for the pop operation. As a result, the time complexity remains
+ linear - , with N being the size of the array.

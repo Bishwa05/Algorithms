@@ -1,16 +1,5 @@
 package sorting;
 
-import java.util.List;
-
-/**
- * Leetcode
- * 147 Insertion Sort List
- */
-class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
- }
 public class InsertionSortList
 {
     public ListNode insertionSortList(ListNode head) {

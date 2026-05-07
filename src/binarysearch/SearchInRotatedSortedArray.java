@@ -63,12 +63,12 @@ public class SearchInRotatedSortedArray
                 return mid;
 
             // We are using mid of the array as well to find the index
-            if (nums[mid] >= nums[lo]) {
+            if (nums[mid] >= nums[lo]) { // left side is sorted in ascending order
                 if (target >= nums[lo] && target < nums[mid])
                     hi = mid - 1;
                 else
                     lo = mid + 1;
-            } else {
+            } else { // right side is sorted in ascending order
                 if (target <= nums[hi] && target > nums[mid])
                     lo = mid + 1;
                 else
