@@ -6,30 +6,45 @@ package dfs;
  * https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
  */
 public class LongestIncreasingPathInAMatrix {
-    int [][] matrix, helper;
-    int[][] dirs = {{0, 1},{1, 0}, {0, -1}, {-1, 0}};
+    private static final int[][] DIRS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     public int longestIncreasingPath(int[][] matrix) {
-        helper = new int[matrix.length][matrix[0].length];
-        this.matrix = matrix;
-        int path = 0;
-        for(int i =0; i<matrix.length; i++) {
-            for(int j = 0; j<matrix[0].length; j++) {
-                path = Math.max(path, dfs(i, j));
+        if (matrix == null || matrix.length == 0) return 0;
+
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] memo = new int[m][n];
+        int maxPath = 0;
+
+        // Try starting the path from every cell in the matrix
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                maxPath = Math.max(maxPath, dfs(matrix, i, j, memo));
             }
         }
-        return path;
+        return maxPath;
     }
 
-    private int dfs(int x, int y) {
-        if(helper[x][y] != 0) return helper[x][y];
+    private int dfs(int[][] matrix, int i, int j, int[][] memo) {
+        // Return cached result if already computed
+        if (memo[i][j] != 0) return memo[i][j];
 
-        for(int d = 0; d<dirs.length; d++){
-            int i = dirs[d][0] +x, j = dirs[d][1] +y;
-            if(i >=0 && i< matrix.length && j>=0 && j< matrix[0].length && matrix[i][j] > matrix[x][y]){
-                helper[x][y] = Math.max(helper[x][y], dfs(i, j));
+        int max = 1;
+        // Explore all 4 neighbors (Up, Down, Left, Right)
+        for (int[] d : DIRS) {
+            int x = i + d[0];
+            int y = j + d[1];
+
+            // Only move to the next cell if it is within bounds and strictly greater
+            if (x >= 0 && x < matrix.length && y >= 0 && y < matrix[0].length
+                    && matrix[x][y] > matrix[i][j]) {
+                int path = 1 + dfs(matrix, x, y, memo);
+                max = Math.max(max, path);
             }
         }
-        return ++helper[x][y];
+
+        // Cache and return the result for cell (i, j)
+        memo[i][j] = max;
+        return max;
     }
 }
