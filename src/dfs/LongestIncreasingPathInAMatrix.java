@@ -47,4 +47,18 @@ public class LongestIncreasingPathInAMatrix {
         memo[i][j] = max;
         return max;
     }
+
+
+    private static int dfsWithoutMemo(int[][] mat, int i, int j) {
+        int maxSubPath = 0;
+        for (int[] dir : DIRS) {
+            int x = i + dir[0];
+            int y = j + dir[1];
+
+            if (x >= 0 && x< mat.length && y >= 0 && y < mat[0].length && mat[x][y] > mat[i][j]) {
+                maxSubPath = Math.max(maxSubPath, dfsWithoutMemo(mat, x, y));
+            }
+        }
+        return maxSubPath + 1;
+    }
 }

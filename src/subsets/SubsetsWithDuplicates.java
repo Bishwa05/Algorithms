@@ -28,10 +28,31 @@ public class SubsetsWithDuplicates {
         return subsets;
     }
 
+    public List<List<Integer>> findSubsetsDFS(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> subsets = new ArrayList<>();
+        List<Integer> currList = new ArrayList<>();
+        dfs(nums, 0, currList, subsets);
+        return subsets;
+    }
+
+    private void dfs(int[] nums, int index, List<Integer> currList, List<List<Integer>> subsets) {
+        subsets.add(new ArrayList<>(currList));
+
+        for (int i = index; i < nums.length; i++) {
+            if (i > index && nums[i] == nums[i-1]) continue;
+            currList.add(nums[i]);
+            dfs(nums, i+1, currList, subsets);
+            currList.remove(currList.size() -1);
+        }
+    }
+
     public static void main(String[] args) {
         SubsetsWithDuplicates sol = new SubsetsWithDuplicates();
         List<List<Integer>> result = sol.findSubsets(new int[] { 1, 3, 3 });
         System.out.println("Here is the list of subsets: " + result);
+        List<List<Integer>> result2 = sol.findSubsetsDFS(new int[] { 1, 3, 3 });
+        System.out.println("Here is the list of subsets: " + result2);
 
         result = sol.findSubsets(new int[] { 1, 5, 3, 3 });
         System.out.println("Here is the list of subsets: " + result);
