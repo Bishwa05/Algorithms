@@ -36,6 +36,18 @@ public class FindMedianOfDataStream {
         return maxHeap.peek();
     }
 
+
+    // Another way with less code
+
+    public void addNum(int num) {
+        maxHeap.offer(num); // add to maxHeap
+        minHeap.offer(maxHeap.poll()); // balance step
+
+        if(maxHeap.size() < minHeap.size()) { // maintain size
+            maxHeap.offer(minHeap.poll());
+        }
+    }
+
     public static void main(String[] args) {
         FindMedianOfDataStream medianOfAStream = new FindMedianOfDataStream();
         medianOfAStream.insertNum(3);
