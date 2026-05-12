@@ -51,4 +51,21 @@ public class SubSetII
             prev = nums[i];
         }
     }
+
+    // Another way of backtrack
+    private void backtrack(int[] nums, int index, List<Integer> curList, List<List<Integer>> result) {
+
+        result.add(new ArrayList<>(curList));
+
+        for(int i = index; i < nums.length; i++) {
+            if (i != index && nums[i] == nums[i-1]) {
+                continue;
+            }
+
+            curList.add(nums[i]);
+            backtrack(nums, i+1, curList, result);
+            curList.remove(curList.size()-1);
+
+        }
+    }
 }

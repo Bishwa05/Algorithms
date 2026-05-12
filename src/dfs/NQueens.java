@@ -6,44 +6,62 @@ import java.util.List;
 
 public class NQueens
 {
-   List<List<String>> res = new ArrayList<>();
-   boolean[] cols, diagonal, reverse;
-   int size;
-   char[][] arr;
 
+    public List<List<String>> solveNQueens(int n) {
+        char[][] board = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        List<List<String>> result = new ArrayList<>();
+        backtrack(board, 0, result);
+        return result;
+    }
 
-   public List<List<String>> solveNQueens(int n){
-       size = n;
-       arr = new char[n][n];
-       for(char[]a : arr){
-           Arrays.fill(a, '.');
-       }
-       cols = new boolean[n];
-       diagonal = new boolean[2 *n -1];
-       reverse = new boolean[2* n -1];
-       recur(0);
-       return res;
-   }
+    private void backtrack(char[][] board, int col, List<List<String>> result) {
+        if (col == board.length) {
+            result.add(construct(board));
+            return;
+        }
 
-    private void recur(int r){
-       if(r == size){
-           List<String> list = new ArrayList<>();
-           for(char[] array : arr){
-               list.add(new String(array));
-           }
-           res.add(list);
-           return;
-       }
-
-        for(int c=0; c<size; c++){
-            if(!cols[c] && !diagonal[r+c] && !reverse[r-c +size -1]){
-                cols[c] = diagonal[r+c] = reverse[r-c+size-1] = true;
-                arr[r][c] ='Q';
-                recur(r+1);
-                arr[r][c] ='.';
-                cols[c] = diagonal[r+c] = reverse[r-c+size-1] = false;
+        for (int i = 0; i < board.length; i++) {
+            if (isValid(board, i, col)) {
+                board[i][col] = 'Q';
+                backtrack(board, col + 1, result);
+                board[i][col] = '.';
             }
         }
     }
 
+    private boolean isValid(char[][] board, int row, int col) {
+        for (int i = 0; i < col; i++) {
+            if (board[row][i] == 'Q') {
+                return false;
+            }
+        }
+
+        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+
+        for (int i = row, j = col; i < board.length && j >= 0; i++, j--) {
+            if (board[i][j] == 'Q') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private List<String> construct(char[][] board) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < board.length; i++) {
+            String row = new String(board[i]);
+            result.add(row);
+        }
+        return result;
+    }
 }
