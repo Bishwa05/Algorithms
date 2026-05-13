@@ -43,5 +43,34 @@ public class WordSearch
         return res;
 
     }
+
+    // Another variant of backtrack
+/*
+    public boolean backtrack2(int row, int col, String word, int index){
+        if(index >= word.length()){
+            return true;
+        }
+
+        if(row < 0 || row >= rows || col < 0 || col >= cols || this.board[row][col] != word.charAt(index)){
+            return false;
+        }
+
+        int [] rowdir = {0,1,0,-1};
+        int[] coldir = {1,0,-1,0};
+        this.board[row][col] = '#';
+
+        boolean ret = false;
+        for(int d = 0; d<4; d++){
+            ret = backtrack(row + rowdir[d], col + coldir[d], word, index+1);
+            if(ret){
+                break;
+            }
+        }
+        board[row][col] = word.charAt(index);
+        return ret;
+
+    }
+
+ */
 }
 
