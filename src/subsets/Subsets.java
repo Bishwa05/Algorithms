@@ -66,6 +66,9 @@ public class Subsets {
 
         result = sol.findSubsets(new int[] { 1, 5, 3 });
         System.out.println("Here is the list of subsets: " + result);
+
+        result = sol.findSubsetsDFS(new int[] { 1, 2, 2 });
+        System.out.println("Here is the list of subsets: " + result);
     }
 }
 
