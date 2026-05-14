@@ -63,6 +63,27 @@ public class ClimbingStairs
         return dp[n];
     }
 
+    // Another approach
+    public int climbStairs2(int n) {
+        // Base case
+        if (n == 0) return 1;
+        if (n == 1) return 1;
+
+        // initialize 2 variables to represent the number of ways to step 0 and step 1
+        int prev2 = 1;
+        int prev1 = 1;
+
+        // Iterate from step 2 to n
+        for (int i = 2; i <= n; i++) {
+            int current = prev1 + prev2; // Number of ways to reach current step
+            prev2 = prev1; // Update prev2 to previous step
+            prev1 = current; // Update prev1 to current step
+
+        }
+        // The ans is no of ways to reach the nth step
+        return prev1;
+    }
+
     public static void main (String arg[])
     {
         ClimbingStairs c = new ClimbingStairs();

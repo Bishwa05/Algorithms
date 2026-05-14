@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+
 /**
  * eg. (assuming American coins: 1, 5, 10, and 25 cents)
  * makeChange(1) = 1 (1)
@@ -89,6 +91,25 @@ public class CoinChange
         }
 
         return cache[cache.length - 1] == 99999 ? -1 : cache[cache.length - 1];
+    }
+
+
+    // Another way with some modifications
+
+    public int coinChange(int[] coins, int amount) {
+        int[] amt = new int[amount+1];
+
+        Arrays.fill(amt, amount+1);
+        amt[0] = 0;
+
+        for (int i = 1; i <= amount; i++) {
+            for (int j = 0; j < coins.length; j++) {
+                if (i >= coins[j]) {
+                    amt[i] = Math.min(amt[i], 1+ amt[i - coins[j]]);
+                }
+            }
+        }
+        return (amt[amount] >= amount+1)? -1 : amt[amount];
     }
 
     public static void main (String arg[])
