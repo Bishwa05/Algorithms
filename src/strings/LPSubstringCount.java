@@ -116,6 +116,7 @@ public class LPSubstringCount {
         return max_str;
     }
 
+
     public static void main(String arg[]){
         String X = "ABBACDEEDC";
         System.out.println(longestPalSubStr(X));

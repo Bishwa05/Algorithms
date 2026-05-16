@@ -1,5 +1,7 @@
 package binarysearch;
 
+import java.util.Arrays;
+
 /**
  * Leetcode 153. Find Minimum in Rotated Sorted Array
  *
@@ -48,6 +50,8 @@ public class FindMinimumInRotatedSortedArray
         }
     }
 
+    // Another nice approach
+
     public int findMin2(int[] nums) {
         if(nums==null || nums.length==0)
             return -1;
@@ -70,4 +74,12 @@ public class FindMinimumInRotatedSortedArray
 
         return -1;
     }
+
+
+    public static void main(String[] args) {
+        FindMinimumInRotatedSortedArray f = new FindMinimumInRotatedSortedArray();
+        System.out.println(f.findMin2(new int[]{3,4,5,1,2}));
+    }
+
+
 }
