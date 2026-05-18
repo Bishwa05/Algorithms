@@ -34,33 +34,20 @@ public class MaximumProductSubArray
         if (nums.length == 1)
             return nums[0];
 
-        int curr_prod = 1;
-        int max_prod_so_far = Integer.MIN_VALUE;
+        int min = nums[0];
+        int max = nums[0];
+        int result = max;
 
-        for (int i = 0; i < nums.length; i++) {
-            curr_prod *= nums[i];
-            if (curr_prod > max_prod_so_far) {
-                max_prod_so_far = curr_prod;
-            }
-
-            if (curr_prod == 0)
-                curr_prod = 1;
+        for (int i = 1; i < nums.length; i++) {
+            int curr = nums[i];
+            int temp = Math.max(curr, Math.max(max*curr, min*curr));
+            min = Math.min(curr, Math.min(min*curr, max*curr));
+            max = temp;
+            result = Math.max(result, max);
         }
 
-        curr_prod = 1;
 
-        for (int i = nums.length - 1; i >= 0; i--) {
-            curr_prod *= nums[i];
-
-            if (curr_prod > max_prod_so_far) {
-                max_prod_so_far = curr_prod;
-            }
-
-            if (curr_prod == 0)
-                curr_prod = 1;
-        }
-
-        return max_prod_so_far;
+        return result;
     }
 
     public static void main (String arg[])
