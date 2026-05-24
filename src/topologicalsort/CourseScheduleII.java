@@ -77,7 +77,7 @@ public class CourseScheduleII
     }
 
     /**
-     *
+     * Approach 2
      */
 
     private boolean dfs(int u, List<Integer>[] adj, List<Integer> s, int[] visited){

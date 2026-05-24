@@ -1,17 +1,16 @@
 package dfs;
 
 public class MaxAreaOfIsland {
-    public static int dfsToAll(int[][] grid, int row, int col, int area) {
-        if(grid[row][col]==0) return area;
+    public static int dfs(int[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) return 0;
 
-        grid[row][col] =0;
-        area = area+1;
+        grid[i][j] = 0;
 
-        if(row+1<grid.length) area = dfsToAll(grid,row+1,col, area);
-        if(row-1>=0) area = dfsToAll(grid,row-1,col, area);
-
-        if(col+1<grid[0].length) area =  dfsToAll(grid,row,col+1, area);
-        if(col-1>=0) area = dfsToAll(grid,row,col-1, area);
+        int area = 1;
+        area += dfs(grid, i+1, j);
+        area += dfs(grid, i-1, j);
+        area += dfs(grid, i, j+1);
+        area += dfs(grid, i, j-1);
 
         return area;
     }
@@ -23,8 +22,7 @@ public class MaxAreaOfIsland {
         for(int i=0; i< grid.length; i++){
             for(int j=0; j<grid[0].length; j++){
                 if(grid[i][j]==1){
-                    int area =0;
-                    area = dfsToAll(grid, i, j, area);
+                    int area = dfs(grid, i, j);
 
                     if(area>maxArea) maxArea = area;
                 }
