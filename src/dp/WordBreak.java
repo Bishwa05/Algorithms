@@ -10,7 +10,9 @@ import java.util.Set;
  */
 public class WordBreak
 {
-
+    /**
+     * O(2^n)
+     */
     public boolean wordBreak (String s, List<String> wordDict)
     {
         boolean ans = false;
@@ -59,44 +61,7 @@ public class WordBreak
         return t[s.length()];
     }
 
-    /**
-     * Time complexity is  O(n^2) but helpfull when the dictionary is huge.
-     * TODO: Analysis
-     */
-    public boolean wordBreakOptimized (String s, Set<String> wordDict)
-    {
-        int[] pos = new int[s.length() + 1];
-
-        Arrays.fill(pos, -1);
-
-        pos[0] = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            if (pos[i] != -1) {
-                for (int j = i + 1; j <= s.length(); j++) {
-                    String sub = s.substring(i, j);
-                    if (wordDict.contains(sub)) {
-                        pos[j] = i;
-                    }
-                }
-            }
-        }
-
-        return pos[s.length()] != -1;
-    }
-
-    public boolean wordBreakDPHelper (String s, List<String> wordDict)
-    {
-        Set<String> wordDictSet = new HashSet<>();
-
-        for (String x : wordDict) {
-            wordDictSet.add(x);
-        }
-        // return wordBreakDP(s,wordDictSet);
-        return wordBreakOptimized(s, wordDictSet);
-
-    }
-
+    //--------------------------------------------
     public boolean wordBreakFaster (String s, List<String> wordDict)
     {
         boolean[] visited = new boolean[s.length() + 1];
@@ -118,6 +83,27 @@ public class WordBreak
         }
         return false;
     }
+
+    //----------------------Another approach-----------------------------
+
+    public boolean wordBreak3(String s, List<String> wordDict) {
+        boolean[] dp = new boolean[s.length()+1];
+        dp[0] = true;
+
+        Set<String> wordSet = new HashSet<>(wordDict);
+
+        for(int i = 1; i <=s.length(); i++) {
+            for (int j = i-1; j >= i; j--) {
+                if (dp[j] && wordSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+    }
+
+
 
     public static void main (String arg[])
     {
