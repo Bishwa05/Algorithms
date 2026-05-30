@@ -8,6 +8,7 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.PriorityQueue;
 
 class UnionFind {
     public int[] group;
@@ -85,5 +86,50 @@ public class MinCostToConnectAllPoints {
             }
         }
         return mstCost;
+    }
+
+
+    /**
+     * Approach 2
+     */
+    public int minCostConnectPoints2(int[][] points) {
+        int n = points.length;
+        PriorityQueue<Point> pq = new PriorityQueue<>((a, b) -> a.distance - b.distance);
+
+        boolean[] inMST = new boolean[n]; // Whether a point is already in MST
+
+        // Start with 1st point
+        pq.offer(new Point(0,0));
+
+        int minCost = 0;
+        int pointsConnected = 0;
+        while (pointsConnected < n) {
+            Point curr = pq.poll();
+            if (inMST[curr.index]) {
+                continue; // skip if the point is already seen in MST
+            }
+
+            inMST[curr.index] = true;
+            minCost += curr.distance;
+            pointsConnected++;
+
+            // update the pq with the distances to the new point in the MST
+            for (int i = 0; i < n; i++) {
+                if (!inMST[i]) {
+                    int distance = Math.abs(points[curr.index][0] - points[i][0]) +
+                            Math.abs(points[curr.index][1] - points[i][1]);
+                    pq.offer(new Point(i, distance));
+                }
+            }
+        }
+    return minCost;
+    }
+
+    class Point {
+        int index, distance;
+        Point(int i, int d) {
+            index = i;
+            distance = d;
+        }
     }
 }
