@@ -1,4 +1,4 @@
-package graph.kruskal;
+package graph_ds_repo.kruskal;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package graph.prims;
+package graph_ds_repo.prims;
 
 public class Prims {
 

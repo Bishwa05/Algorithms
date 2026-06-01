@@ -1,4 +1,4 @@
-package graph.scc;
+package graph_ds_repo.scc;
 
 import java.util.Iterator;
 import java.util.LinkedList;

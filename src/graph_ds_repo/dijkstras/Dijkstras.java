@@ -1,4 +1,4 @@
-package graph.dijkstras;
+package graph_ds_repo.dijkstras;
 
 import java.util.*;
 

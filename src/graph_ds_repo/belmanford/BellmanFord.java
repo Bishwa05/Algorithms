@@ -1,4 +1,4 @@
-package graph.belmanford;
+package graph_ds_repo.belmanford;
 
 import java.util.HashMap;
 

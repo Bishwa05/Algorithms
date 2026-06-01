@@ -1,4 +1,4 @@
-package graph.dag;
+package graph_ds_repo.dag;
 
 import java.util.Arrays;
 
