@@ -1,4 +1,4 @@
-# Algorithms
+# Data Structures and Algorithms in Java
 
 This repo is only for educational purpose. Most of the  questions are taken from https://leetcode.com/. 
 Though there are questions from other sources.
