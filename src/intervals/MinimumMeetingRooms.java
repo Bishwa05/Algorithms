@@ -53,4 +53,7 @@ class MinimumMeetingRooms {
             return minRooms;
     }
 
+
+    // Approach 2
+
 }

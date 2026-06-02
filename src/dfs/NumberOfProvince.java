@@ -1,5 +1,8 @@
 package dfs;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * https://leetcode.com/problems/number-of-provinces/description/?envType=study-plan-v2&envId=leetcode-75
  *
@@ -35,6 +38,37 @@ public class NumberOfProvince {
             }
         }
         return numberOfComponents;
+    }
+
+
+    // Approach 2 using BFS
+
+    public int findCircleNum2(int[][] isConnected) {
+        int n = isConnected.length;
+        boolean[] visited = new boolean[n];
+        int provinces = 0;
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                provinces++;
+                bfs(isConnected, visited, i);
+            }
+        }
+        return provinces;
+    }
+
+    public void bfs(int[][] isConnected, boolean[] visited, int start) {
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(start);
+        visited[start] = true;
+        while (!q.isEmpty()) {
+            int city = q.poll();
+            for (int i = 0; i < isConnected.length; i++) {
+                if (isConnected[city][i] == 1 && !visited[i]) {
+                    q.offer(i);
+                    visited[i] = true;
+                }
+            }
+        }
     }
 
 }

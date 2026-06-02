@@ -57,7 +57,8 @@ public class SwimInRisingWater
     private boolean canSwim(int[][] grid, int t) {
         int n = grid.length;
         boolean[][] visited = new boolean[n][n];
-        dfs(grid, visited, 0, 0, t);
+        return dfs(grid, visited, 0, 0, t);
+
     }
 
     private boolean dfs(int[][] grid, boolean[][] visited, int i, int j, int t) {

@@ -50,6 +50,7 @@ public class SearchInRotatedSortedArray
         return -1;
     }
 
+    // Another approach
 
     public int search2(int[] nums, int target) {
         if (null == nums || 0 == nums.length)

@@ -33,30 +33,42 @@ public class RedundantConnection
 //        int[] arr = {-1,-1};
 //        return arr;
 
-        int arr[] = new int[edges.length];
+        // Initialize the parent array where parent[i] represents the parent of node i
+        int[] parent = new int[edges.length+1];
 
-        for(int i =0; i< edges.length; i++){
-            arr[i] = i;
+        for(int i =1; i< edges.length; i++){
+            parent[i] = i; // Initially each node is its own parent.
         }
 
-        for(int[] edge : edges){
-            int u = find(arr, edge[0]-1);
-            int v = find(arr, edge[1]-1);
-
-            if(u ==v){
+        // Iterate through the edge to find the redundant one
+        for(int[] edge : edges){ // finding the roots of node1 and node2
+            int root1 = find(parent, edge[0]-1);
+            int root2 = find(parent, edge[1]-1);
+            // If the roots are same, cycle is detected, return the current edge
+            if(root1 ==root2){
                 return edge;
             }
-
-            arr[u] = v;
+            // Union the sets by making root1 the parent of root2
+            parent[root1] = root2;
 
         }
+        // If no cycle found.
         int[] arr1 = {-1,-1};
         return arr1;
     }
 
-    private int find(int[] arr, int i){
-        if(arr[i] == i) return i;
-        else return find(arr, arr[i]);
+    private int find(int[] parent, int node) {
+        if(parent[node] == node) return node;
+        else return find(parent, parent[node]);
+    }
+
+    // Iterative approach of find
+    private int findItr(int[] parent, int node) {
+        while (node != parent[node]) {
+            parent[node] = parent[parent[node]];
+            node = parent[node];
+        }
+        return node;
     }
 
 
