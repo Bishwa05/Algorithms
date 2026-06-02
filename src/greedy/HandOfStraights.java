@@ -1,4 +1,4 @@
-package array;
+package greedy;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,21 +39,23 @@ public class HandOfStraights
 
 
     public boolean isNStraightHand2(int[] hand, int W) {
-        TreeMap<Integer, Integer> count = new TreeMap();
+        if (hand.length % W != 0) return false;
+
+        TreeMap<Integer, Integer> cardCount = new TreeMap();
+        // Count each card
         for (int card: hand) {
-            if (!count.containsKey(card))
-                count.put(card, 1);
-            else
-                count.replace(card, count.get(card) + 1);
+            cardCount.put(card, cardCount.getOrDefault(card, 0) + 1);
         }
 
-        while (count.size() > 0) {
-            int first = count.firstKey();
-            for (int card = first; card < first + W; ++card) {
-                if (!count.containsKey(card)) return false;
-                int c = count.get(card);
-                if (c == 1) count.remove(card);
-                else count.replace(card, c - 1);
+        // Attempt to form group
+        while (!cardCount.isEmpty()) {
+            int first = cardCount.firstKey(); // Start with the smallest card
+            for (int i = 0; i < W; i++) {
+                int currentCard = first+i;
+                if (!cardCount.containsKey(currentCard)) return false; // can not form the group
+                int count = cardCount.get(currentCard);
+                if (count == 1) cardCount.remove(currentCard);
+                else cardCount.replace(currentCard, count - 1);
             }
         }
 

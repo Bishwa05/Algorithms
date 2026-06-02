@@ -1,4 +1,4 @@
-package disjointset;
+package dsds;
 
 import java.util.ArrayList;
 import java.util.Arrays;
