@@ -15,7 +15,8 @@ public class KthLargestElement {
     }
 
     /**
-     * Another good approach
+     * Another good approach, not sure if good or bad
+     * This is call quick select where average time complexity is O(n) but it can degrade to O(N^2) in worst case.
      */
 
     public int findKthLargest2(int[] nums, int k) {

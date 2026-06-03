@@ -22,6 +22,11 @@ public class KthSmallestElement
         return nums[k];
     }
 
+    /**
+     * All elements less than or equal to the pivot move to the left side.
+     * All elements greater than the pivot move to the right side.
+     */
+
     public int partition(int[] nums, int lo, int hi){
         int p = nums[lo];
         int i = lo;

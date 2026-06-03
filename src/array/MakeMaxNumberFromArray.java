@@ -28,11 +28,11 @@ import java.util.Collections;
  *      4. The numbers should not be compared with other tree node numerically.
  *          like we got in order, 956, 97, 9, 7
  *              root becomes 956
- *              97 becomes right child of 956 (97 > 956 digit position comparision)
- *              9 becomes right child of 97 (9 > 97 digit position comparision )
- *              7 becomes left child of 956 (7< 956 digit position comparision )
+ *              97 becomes right child of 956 (97 > 956 digit position comparison)
+ *              9 becomes right child of 97 (9 > 97 digit position comparison )
+ *              7 becomes left child of 956 (7< 956 digit position comparison )
  *         Inorder traversal : 7 956 97 9
- *         Output Seqence : 9 97 956 7 (just reverse during traversal)
+ *         Output Sequence : 9 97 956 7 (just reverse during traversal)
  *      5. Now do inorder traversal and put the elements into an deque from last to first.
  *          probably use addFirst()
  */
