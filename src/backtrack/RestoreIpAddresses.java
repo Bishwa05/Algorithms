@@ -56,4 +56,9 @@ public class RestoreIpAddresses
         find(0, "", s, al);
         return al;
     }
+
+    public static void main(String[] args) {
+        RestoreIpAddresses r = new RestoreIpAddresses();
+        System.out.println(r.restoreIpAddresses("25525511135"));
+    }
 }

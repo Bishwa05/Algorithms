@@ -18,13 +18,13 @@ import java.util.List;
  * Output: 4
  * Explanation: All possible concatenations are "","un","iq","ue","uniq" and "ique".
  * Maximum length is 4.
- * Example 2:
  *
+ * Example 2:
  * Input: arr = ["cha","r","act","ers"]
  * Output: 6
  * Explanation: Possible solutions are "chaers" and "acters".
- * Example 3:
  *
+ * Example 3:
  * Input: arr = ["abcdefghijklmnopqrstuvwxyz"]
  * Output: 26
  */

@@ -7,8 +7,13 @@ import java.util.Map;
 
 /**
  * 17. Letter Combinations of a Phone Number
- * Leetcode
+ * https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
  *
+ * Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number
+ * could represent. Return the answer in any order.
+ *
+ * A mapping of digits to letters (just like on the telephone buttons) is given below.
+ * Note that 1 does not map to any letters.
  */
 public class LetterCombinationOfPhoneNumber {
 
@@ -29,7 +34,7 @@ public class LetterCombinationOfPhoneNumber {
 
     public void backtrack(String combination, String next_digits) {
         // if there is no more digits to check
-        if (next_digits.length() == 0) {
+        if (next_digits.isEmpty()) {
             // the combination is done
             output.add(combination);
         }
@@ -49,7 +54,7 @@ public class LetterCombinationOfPhoneNumber {
     }
 
     public List<String> letterCombinations(String digits) {
-        if (digits.length() != 0)
+        if (!digits.isEmpty())
             backtrack("", digits);
         return output;
     }
@@ -73,7 +78,7 @@ public class LetterCombinationOfPhoneNumber {
 
 
         List<String> result = new ArrayList<String>();
-        if(digits==null||digits.length()==0){
+        if(digits==null||digits.isEmpty()){
             return result;
         }
 
@@ -110,7 +115,7 @@ public class LetterCombinationOfPhoneNumber {
         map.put('9', "wxyz");
 
         List<String> l = new ArrayList<>();
-        if (digits == null || digits.length() == 0) {
+        if (digits == null || digits.isEmpty()) {
             return l;
         }
 

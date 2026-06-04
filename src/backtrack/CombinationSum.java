@@ -36,19 +36,19 @@ public class CombinationSum {
         return result;
     }
 
-    public void findCombination(int[] c, int t, List<Integer>in, int index){
-        if(t<0){
+    public void findCombination(int[] candidates, int target, List<Integer>in, int index){
+        if(target<0){
             return;
         }
 
-        if(t==0) {
+        if(target==0) {
             List<Integer> x = new ArrayList<>(in);
             result.add(x);
         }
 
-        for(int i=index; i<c.length; i++){
-            in.add(c[i]);
-            findCombination(c,t-c[i], in, i);
+        for(int i=index; i<candidates.length; i++){
+            in.add(candidates[i]);
+            findCombination(candidates,target-candidates[i], in, i);
             in.remove(in.size()-1);
         }
     }

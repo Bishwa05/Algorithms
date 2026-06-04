@@ -13,19 +13,18 @@ import java.util.Stack;
  *
  *
  *  Example 1:
- *
  * Input: s = "()"
  * Output: 1
- * Example 2:
  *
+ * Example 2:
  * Input: s = "(())"
  * Output: 2
- * Example 3:
  *
+ * Example 3:
  * Input: s = "()()"
  * Output: 2
- * Example 4:
  *
+ * Example 4:
  * Input: s = "(()(()))"
  * Output: 6
  */
@@ -56,8 +55,9 @@ public class FindScore
         if(l+1==h) return 1;
         int mid = list[l];
 
-        if(mid == h) return 2* findScore(l+1, h-1);
-            return  findScore(l, mid) + findScore(mid+1, h);
+        if(mid == h)
+            return 2* findScore(l+1, h-1);
+        return  findScore(l, mid) + findScore(mid+1, h);
 
     }
 

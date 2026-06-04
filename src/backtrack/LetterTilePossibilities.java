@@ -64,10 +64,11 @@ public class LetterTilePossibilities
 
     public int numTilePossibilities2(String str) {
         int[] freq = new int[26];
+        // Step 1: Count frequencies of each character
         for (char ch : str.toCharArray()) {
             freq[ch - 'A']++;
         }
-
+        // Step 2: Calculate total unique permutations
         return dfs(freq);
     }
 
@@ -75,11 +76,11 @@ public class LetterTilePossibilities
         int count = 0;
 
         for (int i = 0; i < 26; i++) {
-            if (freq[i] > 0) {
-                count++;
+            if (freq[i] > 0) { // Skip if character is not available
+                count++; // 1. Choose this character
                 freq[i]--;
-                count += dfs(freq);
-                freq[i]++;
+                count += dfs(freq); // 2. Explore further combinations with remaining characters
+                freq[i]++; // 3. Backtrack (restore the character count)
             }
         }
 
