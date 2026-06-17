@@ -1,4 +1,4 @@
-package tree.trie;
+package trie;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,12 +15,12 @@ public class SearchSuggestionsSystem {
             List<Node> children = Arrays.asList(new Node[26]);
         };
         Node Root, curr;
-        List<String> resultBuffer;
+        List<String> results;
 
         void dfsWithPrefix(Node curr, String word) {
-            if(resultBuffer.size() ==3) return;
+            if(results.size() ==3) return;
 
-            if (curr.isWord) resultBuffer.add(word);
+            if (curr.isWord) results.add(word);
 
             for (char c = 'a'; c<='z'; c++) {
                 if (curr.children.get(c-'a') != null)
@@ -44,16 +44,16 @@ public class SearchSuggestionsSystem {
 
         List<String> getWordsStartingWith(String prefix) {
             curr = Root;
-            resultBuffer = new ArrayList<String>();
+            results = new ArrayList<String>();
 
             for(char c : prefix.toCharArray()) {
                 if(curr.children.get(c-'a')== null){
-                    return resultBuffer;
+                    return results;
                 }
                 curr = curr.children.get(c-'a');
             }
             dfsWithPrefix(curr, prefix);
-            return resultBuffer;
+            return results;
         }
     };
 
