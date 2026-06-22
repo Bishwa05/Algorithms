@@ -3,6 +3,11 @@ package graph;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Dijkestra's Algorithm - Single source Shortest path
+ *
+ *
+ */
 public class DijkstraShortestPath {
     public Map<Vertex<Integer>,Integer> shortestPath(Graph<Integer> graph, Vertex<Integer> sourceVertex){
 
