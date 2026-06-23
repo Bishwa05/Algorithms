@@ -5,22 +5,22 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class OtherTraversals {
 	
-	public ArrayList<ArrayList<Integer>> levelOrder(BinaryTreeNode root){
+	public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root){
 		ArrayList<ArrayList<Integer>> lTree = new ArrayList<ArrayList<Integer>>();
 		if(root == null)
 			return lTree;
-		Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
 		q.offer(root);
 		q.offer(null);
 		
 		ArrayList<Integer>currlvl = new ArrayList<Integer>();
 		
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr !=  null) {
 				currlvl.add(curr.data);
 				if(curr.left != null)
@@ -49,16 +49,16 @@ public class OtherTraversals {
 	 * 
 	 * --> 4 5 6 7 2 3 1
 	 */
-	public static void levelorderTraversalInReverse(BinaryTreeNode root) {
+	public static void levelorderTraversalInReverse(TreeNode root) {
 		if(root == null)
 			return;
 		
-		Stack<BinaryTreeNode> s = new Stack<BinaryTreeNode>();
-		Queue<BinaryTreeNode> q= new LinkedList<>();
+		Stack<TreeNode> s = new Stack<TreeNode>();
+		Queue<TreeNode> q= new LinkedList<>();
 		q.offer(root);
 		
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr.left != null)
 				q.offer(curr.left);
 			if(curr.right != null)
@@ -70,17 +70,17 @@ public class OtherTraversals {
 			System.out.println(s.pop().data+"");
 	}
 	
-	public ArrayList<ArrayList<Integer>> zigZagLvlOrder(BinaryTreeNode root){
+	public ArrayList<ArrayList<Integer>> zigZagLvlOrder(TreeNode root){
 		ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 		if (root == null)
 			return result;
-		Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
 		q.offer(root);
 		q.offer(null);
 		boolean leftToRight = true;
 		ArrayList<Integer> currList = new ArrayList<>();
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr != null) {
 				currList.add(curr.data);
 				if(curr.left != null)

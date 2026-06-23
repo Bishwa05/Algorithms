@@ -28,9 +28,9 @@ import java.util.Stack;
  */
 public class FlattenBinaryTreeToLinkedList
 {
-    public void flatten(BinaryTreeNode root) {
-        Stack<BinaryTreeNode> stack = new Stack<>();
-        BinaryTreeNode p = root;
+    public void flatten(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode p = root;
 
         while(p != null || !stack.empty()){
 
@@ -42,7 +42,7 @@ public class FlattenBinaryTreeToLinkedList
                 p.right = p.left;
                 p.left = null;
             }else if(!stack.empty()){
-                BinaryTreeNode temp = stack.pop();
+                TreeNode temp = stack.pop();
                 p.right=temp;
             }
 
@@ -50,16 +50,16 @@ public class FlattenBinaryTreeToLinkedList
         }
     }
 
-    public static BinaryTreeNode generateTree() {
+    public static TreeNode generateTree() {
 
-        BinaryTreeNode root = new BinaryTreeNode(1);
-        BinaryTreeNode left = new BinaryTreeNode(2);
-        BinaryTreeNode right = new BinaryTreeNode(5);
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(5);
 
-        BinaryTreeNode left11 = new BinaryTreeNode(3);
-        BinaryTreeNode right11 = new BinaryTreeNode(4);
+        TreeNode left11 = new TreeNode(3);
+        TreeNode right11 = new TreeNode(4);
 
-        BinaryTreeNode right21 = new BinaryTreeNode(6);
+        TreeNode right21 = new TreeNode(6);
 
         left.left = left11;
         left.right = right11;
@@ -73,7 +73,7 @@ public class FlattenBinaryTreeToLinkedList
 
     public static void main(String arg[]) {
 
-        BinaryTreeNode root = generateTree();
+        TreeNode root = generateTree();
         FlattenBinaryTreeToLinkedList p = new FlattenBinaryTreeToLinkedList();
         //System.out.println(p.hasSumPath(root, sum));
 

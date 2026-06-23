@@ -1,6 +1,6 @@
 package tree.leetcode;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,12 +10,12 @@ public class FindBottomLeftTreeValue
 
     int res = 0;
     int depth = 0;
-    public int findBottomLeftValue(BinaryTreeNode root) {
+    public int findBottomLeftValue(TreeNode root) {
         dfs(root, 0);
         return res;
     }
 
-    private void dfs(BinaryTreeNode root, int d) {
+    private void dfs(TreeNode root, int d) {
         if (root == null) return;
         if (d == depth) {
             res = root.data;
@@ -26,9 +26,9 @@ public class FindBottomLeftTreeValue
     }
 
 
-    public int findBottomLeftValue2(BinaryTreeNode root) {
+    public int findBottomLeftValue2(TreeNode root) {
 
-        Queue<BinaryTreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
 
         if(root == null) {
@@ -39,7 +39,7 @@ public class FindBottomLeftTreeValue
         while(!q.isEmpty()) {
             int size = q.size();
             while(size > 0) {
-                BinaryTreeNode trav = q.poll();
+                TreeNode trav = q.poll();
                 // Keep Track of left most node at every level
                 if(size == 1) {
                     leftMostNode = trav.data;

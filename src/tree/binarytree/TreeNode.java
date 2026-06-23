@@ -1,21 +1,21 @@
 package tree.binarytree;
 
-public class BinaryTreeNode {
+public class TreeNode {
 	public int data;
-	public BinaryTreeNode left;
-	public BinaryTreeNode right;
+	public TreeNode left;
+	public TreeNode right;
 	
-	public BinaryTreeNode(int val) {
+	public TreeNode(int val) {
 		this.data = val;
 		this.left = null;
 		this.right = null;
 	}
 
-    BinaryTreeNode() {
+    TreeNode() {
 
     }
 
-	BinaryTreeNode(int val, BinaryTreeNode left, BinaryTreeNode right) {
+	TreeNode(int val, TreeNode left, TreeNode right) {
           this.data = val;
           this.left = left;
           this.right = right;

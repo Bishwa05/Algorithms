@@ -2,7 +2,7 @@ package tree.binarytree.traversal;
 
 import java.util.Stack;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 /**
  * 
@@ -11,7 +11,7 @@ import tree.binarytree.BinaryTreeNode;
  */
 public class InOrderTraversal {
 
-	public void inOrderRec(BinaryTreeNode root) {
+	public void inOrderRec(TreeNode root) {
 		if(root != null) {
 			inOrderRec(root.left);
 			System.out.println(root.data);
@@ -19,9 +19,9 @@ public class InOrderTraversal {
 		}
 	}
 	
-	public void inOrderItr(BinaryTreeNode root) {
-		Stack<BinaryTreeNode> s = new Stack<BinaryTreeNode>();
-		BinaryTreeNode currNode = root;
+	public void inOrderItr(TreeNode root) {
+		Stack<TreeNode> s = new Stack<TreeNode>();
+		TreeNode currNode = root;
 		boolean done =false;
 		
 		while(!done) {

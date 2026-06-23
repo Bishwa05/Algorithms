@@ -1,8 +1,11 @@
-package dfs_tree;
+package tree.binarytree.pathsum;
 /**
- * Given a binary tree and a number ‘S’, find all paths from root-to-leaf such that the sum of all the node values of each path equals ‘S’.
+ * Given a binary tree and a number ‘S’,
+ * find all paths from root-to-leaf such that the sum of all the node values of each path equals ‘S’.
  *
  */
+
+import tree.leetcode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +26,8 @@ public class PathSumII {
         if (node.left == null && node.right == null && node.val == sum) {
             allPaths.add(new ArrayList<Integer>(currPath));
         } else {
-            // traverse the left sub-tree
+            // traverse the left subtree and right subtree
             findPathsRec(node.left, sum - node.val, currPath, allPaths);
-            // traverse the right sub-tree
             findPathsRec(node.right, sum - node.val, currPath, allPaths);
         }
         // remove the current node from the path to backtrack,

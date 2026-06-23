@@ -1,7 +1,7 @@
 package tree.binarytree.views;
 
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,13 +23,13 @@ import java.util.ListIterator;
 public class CountPathsForAsum
 {
     //int pathCount = 0;
-    public int countPaths(BinaryTreeNode root, int S){
+    public int countPaths(TreeNode root, int S){
         List<Integer> currentPath = new LinkedList<>();
 
         return dfs(root, S, currentPath);
     }
 
-    public int dfs(BinaryTreeNode node, int S, List<Integer>currentPath){
+    public int dfs(TreeNode node, int S, List<Integer>currentPath){
 
         if(node == null) return 0;
 
@@ -65,12 +65,12 @@ public class CountPathsForAsum
 //        root.left.right = new BinaryTreeNode(10);
 //        root.right.right = new BinaryTreeNode(5);
 
-        BinaryTreeNode root = new BinaryTreeNode(12);
-        root.left = new BinaryTreeNode(7);
-        root.right = new BinaryTreeNode(1);
-        root.left.left = new BinaryTreeNode(4);
-        root.right.left = new BinaryTreeNode(10);
-        root.right.right = new BinaryTreeNode(5);
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(4);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
 
 
         CountPathsForAsum c = new CountPathsForAsum();

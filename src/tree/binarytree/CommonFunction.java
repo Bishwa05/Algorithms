@@ -9,7 +9,7 @@ public class CommonFunction {
 	 * 1. The nodes to be in same level
 	 * 2. They should not sibling
 	 */
-	public boolean ifCousin(BinaryTreeNode root, BinaryTreeNode a, BinaryTreeNode b){
+	public boolean ifCousin(TreeNode root, TreeNode a, TreeNode b){
 		if(root == null || a == null || b == null){
 			return false;
 		}
@@ -21,7 +21,7 @@ public class CommonFunction {
 		return !isSibling(root, a.data, b.data);
 	}
 
-	public int getLevelOfNode(BinaryTreeNode node, int val, int level) {
+	public int getLevelOfNode(TreeNode node, int val, int level) {
 		if(node == null) return 0;
 
 		if(node.data == val){
@@ -36,7 +36,7 @@ public class CommonFunction {
 		return l;
 	}
 
-	public boolean isSibling(BinaryTreeNode root , int x, int y) {
+	public boolean isSibling(TreeNode root , int x, int y) {
 		if(root == null){
 			return false;
 		}
@@ -53,20 +53,20 @@ public class CommonFunction {
 	}
 
 	
-	public int sizeRec(BinaryTreeNode root) {
+	public int sizeRec(TreeNode root) {
 		int leftCount =root.left ==null?0:sizeRec(root.left);
 		int rightCount = root.right == null?0:sizeRec(root.right);
 		return 1+leftCount+rightCount;
 	}
 
-	public int sizeItr(BinaryTreeNode root) {
+	public int sizeItr(TreeNode root) {
 		int count =0;
 		if (root == null)
 			return count;
-		Queue <BinaryTreeNode> q = new LinkedList();
+		Queue <TreeNode> q = new LinkedList();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			count++;
 			if(curr.left != null)
 				q.offer(curr.left);
@@ -79,11 +79,11 @@ public class CommonFunction {
 	/**
 	 *Accepted in leetcode
 	 */
-	public int maxDepth(BinaryTreeNode root) {
+	public int maxDepth(TreeNode root) {
 		return maxDepth(root, 1);
 
 	}
-	public int maxDepth(BinaryTreeNode node, int i) {
+	public int maxDepth(TreeNode node, int i) {
 		if(node == null){
 			return i-1;
 		}
@@ -95,7 +95,7 @@ public class CommonFunction {
 
 	}
 	
-	public int maxDepthRec(BinaryTreeNode root) {
+	public int maxDepthRec(TreeNode root) {
 		if (root == null)
 			return 0;
 		int leftDepth = maxDepthRec(root.left);
@@ -103,15 +103,15 @@ public class CommonFunction {
 		return (leftDepth > rightDepth) ? leftDepth+1: rightDepth+1;
 	}
 	
-	public int maxDepthItr(BinaryTreeNode root) {
+	public int maxDepthItr(TreeNode root) {
 		int maxDepth =0;
 		if(root == null)
 			return maxDepth;
-		Stack<BinaryTreeNode> s = new Stack<>();
+		Stack<TreeNode> s = new Stack<>();
 		s.push(root);
-		BinaryTreeNode prev = null;
+		TreeNode prev = null;
 		while(!s.isEmpty()) {
-			BinaryTreeNode curr = s.peek();
+			TreeNode curr = s.peek();
 			if(prev == null|| prev.left == curr ||  prev.right== curr) {
 				if(curr.left != null) s.push(curr.left);
 				else if(curr.right != null) s.push(curr.right);
@@ -128,18 +128,18 @@ public class CommonFunction {
 		return maxDepth;
 	}
 	
-	public int maxDepthLvlOrder(BinaryTreeNode root) {
+	public int maxDepthLvlOrder(TreeNode root) {
 		int count =0;
 		if(root == null)
 			return count;
 		
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		q.offer(null);
 		count++;
 		
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			
 			if(curr != null) {
 				if(curr.left == null && curr.right == null) {
@@ -162,18 +162,18 @@ public class CommonFunction {
 		return count;	
 	}
 	
-	public int minDepth(BinaryTreeNode root) {
+	public int minDepth(TreeNode root) {
 		int count =0;
 		if (root == null)
 			return count;
 		
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		q.offer(null);
 		count++;
 		
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			
 			if(curr != null) {
 				if(curr.left == null && curr.right == null) {
@@ -196,7 +196,7 @@ public class CommonFunction {
 	}
 
 	
-	public int diameter(BinaryTreeNode root) {
+	public int diameter(TreeNode root) {
 		if(root ==null) return 0;
 		
 		// the path goes through root
@@ -208,7 +208,7 @@ public class CommonFunction {
 		return Math.max(len1, len2);
 	}
 	
-	public int height(BinaryTreeNode root) {
+	public int height(TreeNode root) {
 		if(root == null)
 			return 0;
 		
@@ -224,7 +224,7 @@ public class CommonFunction {
 		int h = Integer.MIN_VALUE;
 	}
 
-	public int height(BinaryTreeNode root, Height x) {
+	public int height(TreeNode root, Height x) {
 		if(root == null)
 			return 0;
 
@@ -237,7 +237,7 @@ public class CommonFunction {
 		return 1+ Math.max(leftH, rightH);
 	}
 	//This approach is correct as solution passes  thorough in leetcode.
-	public int diameterOfBinaryTree(BinaryTreeNode root) {
+	public int diameterOfBinaryTree(TreeNode root) {
 		if(root == null)
 			return 0;
 		Height obj = new Height();
@@ -246,7 +246,7 @@ public class CommonFunction {
 		return obj.h-1;
 	}
 	
-	public int maxWidthRec(BinaryTreeNode root) {
+	public int maxWidthRec(TreeNode root) {
 		int max =0;
 		int height = maxDepthRec(root);
 		
@@ -257,7 +257,7 @@ public class CommonFunction {
 		return max;
 	}
 	
-	public int width(BinaryTreeNode root, int depth) {
+	public int width(TreeNode root, int depth) {
 		if(root == null)
 			return 0;
 		else
@@ -276,18 +276,18 @@ public class CommonFunction {
 	 * Here tree has 5 vertical lines, 4,2, 12, 3, 7
 	 */
 	
-	public static void vSum(HashMap<Integer, Integer> hash, BinaryTreeNode root, int c) {
+	public static void vSum(HashMap<Integer, Integer> map, TreeNode root, int c) {
 		if(root.left != null)
-			vSum(hash,root.left, c-1);
+			vSum(map,root.left, c-1);
 		if(root.right != null)
-			vSum(hash,root.right, c+1);
+			vSum(map,root.right, c+1);
 		int data = 0;
-		if(hash.containsKey(c))
-			data = hash.get(c);
-		hash.put(c, root.data +data);
+		if(map.containsKey(c))
+			data = map.get(c);
+		map.put(c, root.data +data);
 	}
 	
-	public static void verticalSum(BinaryTreeNode root) {
+	public static void verticalSum(TreeNode root) {
 		HashMap<Integer, Integer> hash = new HashMap<>();
 		vSum(hash, root, 0);
 		System.out.println();
@@ -296,7 +296,7 @@ public class CommonFunction {
 			System.out.println(" key(pos): "+k+ " sum : "+hash.get(k)+" ");
 	}
 
-	public List<List<Integer>> verticalTraversal(BinaryTreeNode root) {
+	public List<List<Integer>> verticalTraversal(TreeNode root) {
 		if (root == null) return new ArrayList<List<Integer>>();
 
  /*
@@ -309,7 +309,7 @@ public class CommonFunction {
 		int offset = dfs(root, 0);
 
 		// level order of queue and its index
-		Queue<BinaryTreeNode> queue = new LinkedList<>();
+		Queue<TreeNode> queue = new LinkedList<>();
 		Queue<Integer> indices = new LinkedList<>();
 
 		queue.offer(root);
@@ -335,7 +335,7 @@ public class CommonFunction {
 			// standard level order traversal:
 			for (int i=0; i<size; i++) {
 
-				BinaryTreeNode curr = queue.poll();
+				TreeNode curr = queue.poll();
 				int index = indices.poll();
 				int updatedIndex = index + offset;
 
@@ -368,7 +368,7 @@ public class CommonFunction {
 		return result;
 	}
 
-	private int dfs(BinaryTreeNode root, int depth) {
+	private int dfs(TreeNode root, int depth) {
 		if (root == null) return depth-1;
 		int left = dfs (root.left, depth+1);
 		int right = dfs(root.right, depth-1);
@@ -380,7 +380,7 @@ public class CommonFunction {
      * @param root
      * @return
      */
-	public static BinaryTreeNode invertBinaryTree(BinaryTreeNode root){
+	public static TreeNode invertBinaryTree(TreeNode root){
 
 		if(root != null){
 			swapChild(root);
@@ -390,17 +390,17 @@ public class CommonFunction {
 		return root;
 	}
 
-	public static void swapChild(BinaryTreeNode root){
-		BinaryTreeNode t = root.left;
+	public static void swapChild(TreeNode root){
+		TreeNode t = root.left;
 		root.left = root.right;
 		root.right = t;
 	}
 
-    public static BinaryTreeNode invertBinaryTreeItr(BinaryTreeNode root){
-	    Queue<BinaryTreeNode> q = new LinkedList<>();
+    public static TreeNode invertBinaryTreeItr(TreeNode root){
+	    Queue<TreeNode> q = new LinkedList<>();
 	    q.offer(root);
 	    while(!q.isEmpty()){
-	        BinaryTreeNode t = q.poll();
+	        TreeNode t = q.poll();
 	        if(t == null) continue;
             swapChild(t);
             q.offer(t.left);
@@ -409,12 +409,12 @@ public class CommonFunction {
         return root;
     }
 
-	public static void display(BinaryTreeNode root){
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+	public static void display(TreeNode root){
+		Queue<TreeNode> q = new LinkedList<>();
 		q.add(root);
 
 		while(!q.isEmpty()){
-			BinaryTreeNode n = q.poll();
+			TreeNode n = q.poll();
 			System.out.println(n.data);
 			if(n.left!= null){
 				q.offer(n.left);
@@ -426,11 +426,11 @@ public class CommonFunction {
 	}
 
 
-	public boolean isSymmetric(BinaryTreeNode root) {
+	public boolean isSymmetric(TreeNode root) {
 		return isMirror(root, root);
 	}
 
-	public boolean isMirror(BinaryTreeNode root1, BinaryTreeNode root2){
+	public boolean isMirror(TreeNode root1, TreeNode root2){
 
 		if(root1 == null && root2 == null) return true;
 		if((root1 == null && root2 != null) ||
@@ -442,16 +442,16 @@ public class CommonFunction {
 	}
 
 
-	public boolean isSymmetricItr(BinaryTreeNode root) {
+	public boolean isSymmetricItr(TreeNode root) {
 		//return isMirror(root, root);
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 
 		q.offer(root);
 		q.offer(root);
 
 		while(!q.isEmpty()){
-			BinaryTreeNode root1 = 	q.poll();
-			BinaryTreeNode root2 = 	q.poll();
+			TreeNode root1 = 	q.poll();
+			TreeNode root2 = 	q.poll();
 
 			if (root1 == null && root2 == null) continue;
 			if (root1 == null || root2 == null) return false;
@@ -467,11 +467,11 @@ public class CommonFunction {
 	}
 
 
-	public boolean isHeightBalancedRec(BinaryTreeNode root){
+	public boolean isHeightBalancedRec(TreeNode root){
 		return getDepth(root) != -1;
 	}
 
-	private int getDepth(BinaryTreeNode root){
+	private int getDepth(TreeNode root){
 		if(root == null) return 0;
 
 		int leftHeight = getDepth(root.left);
@@ -485,13 +485,13 @@ public class CommonFunction {
 		return 1 + Math.max(leftHeight, rightHeight);
 	}
 
-	public boolean isHeightBalancedItr(BinaryTreeNode root){
+	public boolean isHeightBalancedItr(TreeNode root){
 		if(root == null) return true;
-		Map<BinaryTreeNode, Integer> heights = new HashMap<>();
-		ArrayDeque<BinaryTreeNode> stack = new ArrayDeque<>();
+		Map<TreeNode, Integer> heights = new HashMap<>();
+		ArrayDeque<TreeNode> stack = new ArrayDeque<>();
 		stack.push(root);
 		while(!stack.isEmpty()){
-			BinaryTreeNode curr = stack.peek();
+			TreeNode curr = stack.peek();
 			if(curr.left != null && !heights.containsKey(curr.left)){
 				curr = curr.left;
 				stack.push(curr);
@@ -520,16 +520,16 @@ public class CommonFunction {
 		 * 			2							3
 		 * 		4		5				6				7
 		 */
-		BinaryTreeNode root = new BinaryTreeNode(1);
-		root.left = new BinaryTreeNode(2);
-		root.right = new BinaryTreeNode(3);
-		root.left.left = new BinaryTreeNode(4);
-		root.left.right = new BinaryTreeNode(5);
-		root.right.left = new BinaryTreeNode(6);
-		root.right.right = new BinaryTreeNode(7);
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		root.right.left = new TreeNode(6);
+		root.right.right = new TreeNode(7);
 		CommonFunction c = new CommonFunction();
 		// c.verticalTraversal(root);
-		BinaryTreeNode d = c.invertBinaryTreeItr(root);
+		TreeNode d = c.invertBinaryTreeItr(root);
 		c.display(d);
 	}
 

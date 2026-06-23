@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //import com.sun.source.tree.BinaryTree;
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class SearchElement {
 	
-	public int maxInBinaryTreeRec(BinaryTreeNode root) {
+	public int maxInBinaryTreeRec(TreeNode root) {
 		int max = Integer.MIN_VALUE;
 		
 		if(root != null) {
@@ -27,16 +27,16 @@ public class SearchElement {
 	}
 
 	
-	public int maxInBinaryTreeItr(BinaryTreeNode root) {
+	public int maxInBinaryTreeItr(TreeNode root) {
 		int max = Integer.MIN_VALUE;
 		
 		if(root == null)
 			return max;
 		
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr.data>max)
 				max = curr.data;
 			if(curr != null) {
@@ -56,7 +56,7 @@ public class SearchElement {
 	 * @return
 	 */
 	
-	public boolean findInBinaryTreeRec(BinaryTreeNode root, int data) {
+	public boolean findInBinaryTreeRec(TreeNode root, int data) {
 		if(root == null)
 			return false;
 		if(root.data == data)
@@ -70,13 +70,13 @@ public class SearchElement {
 	 * @param data
 	 * @return
 	 */
-	public boolean findInBinaryTreeItr(BinaryTreeNode root, int data) {
+	public boolean findInBinaryTreeItr(TreeNode root, int data) {
 		if(root == null)
 			return false;
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr.data == data)
 				return true;
 			if(curr != null) {
@@ -95,11 +95,11 @@ public class SearchElement {
 	 * @param root
 	 * @return
 	 */
-	public BinaryTreeNode deepestNodeInBT(BinaryTreeNode root) {
+	public TreeNode deepestNodeInBT(TreeNode root) {
 		 if(root == null)
 			 return null;
-		 BinaryTreeNode tmp = null;
-		 Queue<BinaryTreeNode> q = new LinkedList<>();
+		 TreeNode tmp = null;
+		 Queue<TreeNode> q = new LinkedList<>();
 		 q.offer(root);
 		 while(!q.isEmpty()) {
 			 tmp = q.poll();
@@ -116,17 +116,17 @@ public class SearchElement {
 	 * @param root
 	 * @return
 	 */
-	public int findLevelWithMaxSum(BinaryTreeNode root) {
+	public int findLevelWithMaxSum(TreeNode root) {
 		int maxSum =0, currentSum =0;
 		if(root == null)
 			return 0;
 		
-		Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
 		q.offer(root);
 		q.offer(null);
 		
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr != null) {
 				currentSum += curr.data;
 				if(curr.left != null)
@@ -150,7 +150,7 @@ public class SearchElement {
 	 * Check whether the given two trees are isomorphic or not.
 	 * root1 and root2 is isomorphic if they have same structure.
 	 */
-	public boolean isIsomorphic(BinaryTreeNode root1, BinaryTreeNode root2) {
+	public boolean isIsomorphic(TreeNode root1, TreeNode root2) {
 		if(root1 == null && root2 == null) {
 			return true;
 		}
@@ -162,14 +162,14 @@ public class SearchElement {
 
 	/**
 	 * Check whether trees are quasi-isomorphic to each other
-	 * the trees root1 and root 2 are quasi-isomorphic, if root1 can be transformed
-	 * into root2 by swapping the left and right children of root1.
+	 * the trees root 1 and root 2 are quasi-isomorphic, if root 1 can be transformed
+	 * into root 2 by swapping the left and right children of root1.
 	 */
-	public boolean quasiIsomorphic(BinaryTreeNode root1, BinaryTreeNode root2) {
+	public boolean quasiIsomorphic(TreeNode root1, TreeNode root2) {
 		if(root1 == null && root2 == null){
 			return true;
 		}
-		if((root1 == null && root2 !=null) || (root1 != null && root2 == null))
+		if((root1 == null || root2 == null))
 			return false;
 		return  ((quasiIsomorphic(root1.left, root2.left)
 		&& quasiIsomorphic(root1.right, root2.right)) ||(
@@ -181,12 +181,11 @@ public class SearchElement {
     /**
      * Least Common Ancestors
      */
-    public BinaryTreeNode LCA(BinaryTreeNode root, BinaryTreeNode a, BinaryTreeNode b) {
-        BinaryTreeNode left, right;
-        if(root == null)
+    public TreeNode LCA(TreeNode root, TreeNode a, TreeNode b) {
+        TreeNode left, right;
+        if(root == null || root ==a || root==b)
             return root;
-        if(root ==a || root==b)
-            return root;
+
         left = LCA(root.left, a, b);
         right = LCA(root.right, a, b);
         if(left != null && right != null)
@@ -195,7 +194,5 @@ public class SearchElement {
             return(left != null? left:right);
         //Either 1 node is on 1 branch or none was found in any of the branches
     }
-
-
 
 }

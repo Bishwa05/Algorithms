@@ -1,10 +1,10 @@
 package tree.binarytree.two;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class TwoTree {
 
-	public boolean checkStructurallySame(BinaryTreeNode root1, BinaryTreeNode root2) {
+	public boolean checkStructurallySame(TreeNode root1, TreeNode root2) {
 		if(root1 == null && root2 == null)
 			return true;
 		if(root1 ==null || root2 == null)
@@ -14,8 +14,8 @@ public class TwoTree {
 	}
 	
 	//Convert a tree to its mirror tree
-	public BinaryTreeNode mirrorOfBinaryTree(BinaryTreeNode root) {
-		BinaryTreeNode tmp;
+	public TreeNode mirrorOfBinaryTree(TreeNode root) {
+		TreeNode tmp;
 		if(root != null) {
 			mirrorOfBinaryTree(root.left);
 			mirrorOfBinaryTree(root.right);
@@ -28,7 +28,7 @@ public class TwoTree {
 	}
 	
 	//Whether provided 2 trees are mirrors to each other
-	public boolean areMirrors(BinaryTreeNode root1, BinaryTreeNode root2) {
+	public boolean areMirrors(TreeNode root1, TreeNode root2) {
 		if(root1 == null && root2 == null)
 			return true;
 		if(root1 == null || root2== null)

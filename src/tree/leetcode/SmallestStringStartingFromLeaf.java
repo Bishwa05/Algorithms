@@ -1,16 +1,16 @@
 package tree.leetcode;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class SmallestStringStartingFromLeaf
 {
     String ans = "";
-    public String smallestFromLeaf(BinaryTreeNode root) {
+    public String smallestFromLeaf(TreeNode root) {
         dfs(root, new StringBuilder());
         return ans;
     }
 
-    public void dfs(BinaryTreeNode node, StringBuilder sb){
+    public void dfs(TreeNode node, StringBuilder sb){
         if(node == null) return;
         sb.append((char)('a'+ node.data));
 

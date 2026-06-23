@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class CreateTree {
 	
@@ -18,7 +18,7 @@ public class CreateTree {
 	 */
 	int preOrderIndex;
 	Map<Integer, Integer> inorderIndexMap;
-	public BinaryTreeNode buildBinaryTree(int[] preOrder, int[] inOrder) {
+	public TreeNode buildBinaryTree(int[] preOrder, int[] inOrder) {
 		preOrderIndex = 0;
 		inorderIndexMap = new HashMap<>();
 		for (int i = 0; i < inOrder.length; i++){
@@ -29,13 +29,13 @@ public class CreateTree {
 		return buildBT(preOrder, 0, preOrder.length-1);
 	}
 
-	private BinaryTreeNode buildBT(int[] preOrder, int left, int right) {
+	private TreeNode buildBT(int[] preOrder, int left, int right) {
 
 		if(left > right) return null;
 
 		int rootValue = preOrder[preOrderIndex];
 		preOrderIndex++;
-		BinaryTreeNode root = new BinaryTreeNode(rootValue);
+		TreeNode root = new TreeNode(rootValue);
 		root.left = buildBT(preOrder, left, inorderIndexMap.get(rootValue) -1);
 		root.right =buildBT(preOrder, inorderIndexMap.get(rootValue)+1, right);
 		return root;
@@ -47,19 +47,19 @@ public class CreateTree {
 	 * 106. Construct Binary Tree from Inorder and Postorder Traversal
 	 *
 	 */
-	public BinaryTreeNode buildBinaryTree2(int[] inOrder, int[] postOrder) {
+	public TreeNode buildBinaryTree2(int[] inOrder, int[] postOrder) {
 		if(postOrder.length ==0|| inOrder.length != postOrder.length)
 			return null;
 		return buildBT2(postOrder, 0, postOrder.length-1, inOrder,0, inOrder.length-1);
 	}
 
-	private BinaryTreeNode buildBT2(int[] postOrder, int postStart, int postEnd, int[] inOrder, int inStart, int inEnd) {
+	private TreeNode buildBT2(int[] postOrder, int postStart, int postEnd, int[] inOrder, int inStart, int inEnd) {
 
 		if(postStart>postEnd || inStart>inEnd)
 			return null;
 		int data = postOrder[postEnd];
 		int offset = inStart;
-		BinaryTreeNode curr = new BinaryTreeNode(data);
+		TreeNode curr = new TreeNode(data);
 		for(;offset <inEnd; offset++) {
 			if(inOrder[offset]== data)
 				break;
@@ -94,14 +94,14 @@ public class CreateTree {
 		return count[n];
 	}
 	
-	public ArrayList<BinaryTreeNode> generateTrees(int n){
+	public ArrayList<TreeNode> generateTrees(int n){
 		if(n == 0)
 			return generateTrees(1,0);
 		return generateTrees(1,n);
 	}
 
-	private ArrayList<BinaryTreeNode> generateTrees(int start, int end) {
-		ArrayList<BinaryTreeNode> subTrees = new ArrayList<>();
+	private ArrayList<TreeNode> generateTrees(int start, int end) {
+		ArrayList<TreeNode> subTrees = new ArrayList<>();
 		
 		if(start>end) {
 			subTrees.add(null);
@@ -109,9 +109,9 @@ public class CreateTree {
 		}
 		
 		for(int i= start; i<= end; i++) {
-			for(BinaryTreeNode  left: generateTrees(start, i-1)) {
-				for(BinaryTreeNode right: generateTrees(i+1, end)) {
-					BinaryTreeNode tmp = new BinaryTreeNode(i);
+			for(TreeNode left: generateTrees(start, i-1)) {
+				for(TreeNode right: generateTrees(i+1, end)) {
+					TreeNode tmp = new TreeNode(i);
 					tmp.left= left;
 					tmp.right =right;
 					subTrees.add(tmp);
@@ -120,6 +120,4 @@ public class CreateTree {
 		}
 		return subTrees;
 	}
-	
-	
 }

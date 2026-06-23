@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PathSumFromRoot {
 
-    public boolean hasSumPath(BinaryTreeNode node, int sum)  {
+    public boolean hasSumPath(TreeNode node, int sum)  {
         boolean ans =false;
         if(node == null)
             return sum == 0;
@@ -34,14 +34,14 @@ public class PathSumFromRoot {
     }
 
 
-    public List<List<Integer>> pathSum(BinaryTreeNode root, int sum) {
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> temp = new ArrayList<>();
         pathSumHelper(root, sum, res, temp);
         return res;
     }
 
-    public void pathSumHelper(BinaryTreeNode root, int sum, List<List<Integer>> res, List<Integer> temp) {
+    public void pathSumHelper(TreeNode root, int sum, List<List<Integer>> res, List<Integer> temp) {
         if(root == null){
             return;
         } else {
@@ -74,7 +74,7 @@ public class PathSumFromRoot {
 //            left : right);
 //    }
 
-    public boolean populatePath(BinaryTreeNode root, int sum, List<Integer> res){
+    public boolean populatePath(TreeNode root, int sum, List<Integer> res){
 
         if(sum ==0 ) return true;
 
@@ -91,14 +91,14 @@ public class PathSumFromRoot {
 
     }
 
-    public List<Integer> findMaxSumPath(BinaryTreeNode root) {
+    public List<Integer> findMaxSumPath(TreeNode root) {
         List<Integer> res = new ArrayList<>();
 //        int sum = findMaxSumPathRec(root);
 //        populatePath(root, sum, res);
         return res;
     }
 
-    public int minRootToLeafSum(BinaryTreeNode root) {
+    public int minRootToLeafSum(TreeNode root) {
         // Base case: if the tree is empty, return a large value since we are finding the minimum sum
         if (root == null) {
             return Integer.MAX_VALUE;
@@ -119,13 +119,13 @@ public class PathSumFromRoot {
 
     private static int globalMaximumSum;
 
-    public int findMaximumPathSum(BinaryTreeNode root) {
+    public int findMaximumPathSum(TreeNode root) {
         globalMaximumSum = Integer.MIN_VALUE;
         findMaximumPathSumRecursive(root);
         return globalMaximumSum;
     }
 
-    private static int findMaximumPathSumRecursive(BinaryTreeNode currentNode) {
+    private static int findMaximumPathSumRecursive(TreeNode currentNode) {
         if (currentNode == null)
             return 0;
 
@@ -157,7 +157,7 @@ public class PathSumFromRoot {
 
         int sum = 25; //10+6+7
 
-        BinaryTreeNode root = generateTree();
+        TreeNode root = generateTree();
         PathSumFromRoot p = new PathSumFromRoot();
         //System.out.println(p.hasSumPath(root, sum));
 
@@ -169,15 +169,15 @@ public class PathSumFromRoot {
 
     }
 
-    public static BinaryTreeNode generateTree() {
+    public static TreeNode generateTree() {
 
-        BinaryTreeNode root = new BinaryTreeNode(10);
-        BinaryTreeNode left = new BinaryTreeNode(8);
-        BinaryTreeNode right11 = new BinaryTreeNode(3);
-        BinaryTreeNode left11 = new BinaryTreeNode(5);
-        BinaryTreeNode right = new BinaryTreeNode(6);
-        BinaryTreeNode left21 = new BinaryTreeNode(9);
-        BinaryTreeNode right21 = new BinaryTreeNode(4);
+        TreeNode root = new TreeNode(10);
+        TreeNode left = new TreeNode(8);
+        TreeNode right11 = new TreeNode(3);
+        TreeNode left11 = new TreeNode(5);
+        TreeNode right = new TreeNode(6);
+        TreeNode left21 = new TreeNode(9);
+        TreeNode right21 = new TreeNode(4);
 
         left.left = left11;
         left.right = right11;

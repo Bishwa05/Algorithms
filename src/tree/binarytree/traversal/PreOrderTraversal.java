@@ -2,7 +2,7 @@ package tree.binarytree.traversal;
 
 import java.util.Stack;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 /**
  * 
@@ -11,7 +11,7 @@ import tree.binarytree.BinaryTreeNode;
  */
 public class PreOrderTraversal {
 	
-	public void preOrderRec(BinaryTreeNode root) {
+	public void preOrderRec(TreeNode root) {
 		if(root != null) {
 			System.out.println(root.data);
 			preOrderRec(root.left);
@@ -19,15 +19,15 @@ public class PreOrderTraversal {
 		}
 	}
 	
-	public void preOrderItr(BinaryTreeNode root) {
+	public void preOrderItr(TreeNode root) {
 		if(root == null) {
 			System.out.println("[]");
 		}else {
-			Stack<BinaryTreeNode> s = new Stack<BinaryTreeNode>();
+			Stack<TreeNode> s = new Stack<TreeNode>();
 			s.push(root);
 			
 			while(!s.isEmpty()) {
-				BinaryTreeNode tmp = s.pop();
+				TreeNode tmp = s.pop();
 				System.out.println(tmp);
 				if(tmp.right != null)
 					s.push(tmp.right);
@@ -44,7 +44,7 @@ public class PreOrderTraversal {
 	 */
 
 	int count = 0;
-	public void preorder(BinaryTreeNode node, int path) {
+	public void preorder(TreeNode node, int path) {
 		if (node != null) {
 			// compute occurences of each digit
 			// in the corresponding register
@@ -64,7 +64,7 @@ public class PreOrderTraversal {
 	}
 
 
-	public int pseudoPalindromicPaths (BinaryTreeNode root) {
+	public int pseudoPalindromicPaths (TreeNode root) {
 		preorder(root, 0);
 		return count;
 	}

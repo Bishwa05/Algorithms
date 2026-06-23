@@ -1,8 +1,7 @@
 package tree.binarytree.views;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
-import javax.swing.tree.TreeNode;
 import java.util.*;
 
 /**
@@ -29,19 +28,19 @@ import java.util.*;
  */
 public class BinaryTreeRightSideView {
 
-    public List<Integer> rightSideView(BinaryTreeNode root) {
+    public List<Integer> rightSideView(TreeNode root) {
 
 
         List<Integer> result = new ArrayList<>();
         if (root == null) return result;
 
         List<Integer> interimList = new ArrayList<>();
-        Queue<BinaryTreeNode> q= new LinkedList<>();
+        Queue<TreeNode> q= new LinkedList<>();
         q.add(root);
         q.add(null);
 
         while(!q.isEmpty()){
-            BinaryTreeNode n =q.poll();
+            TreeNode n =q.poll();
             if(n!= null) {
                 interimList.add(n.data);
 
@@ -66,12 +65,12 @@ public class BinaryTreeRightSideView {
 
 
     List<Integer> res = new ArrayList<>();
-    public List<Integer> rightSideView2(BinaryTreeNode root) {
+    public List<Integer> rightSideView2(TreeNode root) {
         dfs(root, 0);
         return res;
     }
 
-    private void dfs(BinaryTreeNode root, int lv) {
+    private void dfs(TreeNode root, int lv) {
         if (root == null) return;
 
         if (lv >= res.size()) res.add(root.data);
@@ -94,13 +93,13 @@ public class BinaryTreeRightSideView {
 //        root.right.right = new BinaryTreeNode(4);
 
 
-        BinaryTreeNode root = new BinaryTreeNode(1);
-        root.left = new BinaryTreeNode(2);
-        root.right = new BinaryTreeNode(3);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
         //root.left.left = new BinaryTreeNode(4);
-        root.left.right = new BinaryTreeNode(5);
-        root.right.left = new BinaryTreeNode(6);
-        root.right.right = new BinaryTreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(4);
 
         BinaryTreeRightSideView c = new BinaryTreeRightSideView();
 //        List<Integer> res = c.rightSideView(root);

@@ -5,18 +5,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import tree.binarytree.BinaryTreeNode;
+import tree.binarytree.TreeNode;
 
 public class LeafOps {
 
-	public int numberOfLeavesLvlOrder(BinaryTreeNode root) {
+	public int numberOfLeavesLvlOrder(TreeNode root) {
 		int count =0;
 		if(root == null)
 			return count;
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode tmp = q.poll();
+			TreeNode tmp = q.poll();
 			if(tmp.left == null && tmp.right == null)
 				count++;
 			if(tmp.left != null)
@@ -27,14 +27,14 @@ public class LeafOps {
 		return count;
 	}
 	
-	public int numberOfFullNodesLvlOrder(BinaryTreeNode root) {
+	public int numberOfFullNodesLvlOrder(TreeNode root) {
 		int count =0;
 		if(root == null)
 			return count;
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode tmp = q.poll();
+			TreeNode tmp = q.poll();
 			if(tmp.left != null && tmp.right !=null)
 				count++;
 			if(tmp.left != null)
@@ -45,14 +45,14 @@ public class LeafOps {
 		return count;
 	}
 	
-	public int numberOfHalfNodesLvlOrder(BinaryTreeNode root) {
+	public int numberOfHalfNodesLvlOrder(TreeNode root) {
 		int count =0;
 		if(root == null)
 			return count;
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode tmp = q.poll();
+			TreeNode tmp = q.poll();
 			if((tmp.left == null && tmp.right !=null)||
 					(tmp.left != null && tmp.right ==null))
 				count++;
@@ -65,12 +65,12 @@ public class LeafOps {
 	}
 	
 	//print all the paths from root to leaf in a tree
-	public void printPaths(BinaryTreeNode root) {
+	public void printPaths(TreeNode root) {
 		int[] path = new int[256];
 		printPaths(root,path,0);
 	}
 
-	private void printPaths(BinaryTreeNode root, int[] path, int pathLen) {
+	private void printPaths(TreeNode root, int[] path, int pathLen) {
 		if(root == null)
 			return;
 		//append this node to path array
@@ -96,14 +96,14 @@ public class LeafOps {
 
 
 	// Done in leetcode 257. Binary Tree Paths
-	public List<String> binaryTreePaths(BinaryTreeNode root) {
+	public List<String> binaryTreePaths(TreeNode root) {
 		List<String> res = new ArrayList<>();
 
 		dfs(root, new ArrayList<>(), res);
 		return res;
 	}
 
-	public void dfs(BinaryTreeNode root, List<Integer> temp, List<String> res){
+	public void dfs(TreeNode root, List<Integer> temp, List<String> res){
 		temp.add(root.data);
 		if(root.left == null && root.right == null){
 			StringBuilder sb = new StringBuilder();
@@ -130,7 +130,7 @@ public class LeafOps {
 	
 	
 	//Check the existence of path with given sum
-	public boolean hasPathSum(BinaryTreeNode root, int sum) {
+	public boolean hasPathSum(TreeNode root, int sum) {
 		if(root == null)
 			return false;
 		if(root.left == null && root.right == null && root.data == sum)
@@ -140,7 +140,7 @@ public class LeafOps {
 	}
 	
 	// find sum of all elements in a binary tree
-	public int addBTRec(BinaryTreeNode root) {
+	public int addBTRec(TreeNode root) {
 		if(root == null)
 			return 0;
 		else
@@ -148,14 +148,14 @@ public class LeafOps {
 	}
 	
 	// find sum of all elements in a binary tree itr
-	public int addBTItr(BinaryTreeNode root) {
+	public int addBTItr(TreeNode root) {
 		int sum =0;
 		if(root == null)
 			return sum;
-		Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
 		q.offer(root);
 		while(!q.isEmpty()) {
-			BinaryTreeNode curr = q.poll();
+			TreeNode curr = q.poll();
 			if(curr != null) {
 				sum+= curr.data;
 				if(curr.left != null)
@@ -171,7 +171,7 @@ public class LeafOps {
 	/**
 	 * Print all ancestors of a node in a BinaryTree 
 	 */
-	public static boolean printAllAncestors(BinaryTreeNode root, BinaryTreeNode node) {
+	public static boolean printAllAncestors(TreeNode root, TreeNode node) {
 		if(root == null)
 			return false;
 		if(root.left == node || root.right == node ||
@@ -188,15 +188,15 @@ public class LeafOps {
 	 * 1302. Deepest Leaves Sum
 	 * Leetcode.
 	 */
-	public int deepestLeavesSum(BinaryTreeNode root) {
+	public int deepestLeavesSum(TreeNode root) {
 		int sum =0;
 		int finalSum = 0;
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<TreeNode> q = new LinkedList<>();
 		q.offer(root);
 		q.offer(null);
 
 		while(!q.isEmpty()){
-			BinaryTreeNode x = q.poll();
+			TreeNode x = q.poll();
 
 			if(x!= null){
 				sum = sum+ x.data;
@@ -220,57 +220,5 @@ public class LeafOps {
 
 		return finalSum;
 
-	}
-
-	/**
-	 *
-	 * 129. Sum Root to Leaf Numbers
-	 * https://leetcode.com/problems/sum-root-to-leaf-numbers/
-	 *
-	 */
-
-	public int sumNumbers(BinaryTreeNode root) {
-		return sumNumbersRec(root, ""+root.data);
-	}
-
-	public int sumNumbersRec(BinaryTreeNode root, String val) {
-		if(root ==null) return 0;
-
-		if(root.left == null && root.right == null){
-			int pathSum = Integer.parseInt(val);
-			return pathSum;
-		}
-
-		if(root.left != null && root.right == null){
-			return sumNumbersRec(root.left, ""+val + root.left.data);
-		} else if(root.right != null && root.left == null){
-			return sumNumbersRec(root.right, ""+val + root.right.data);
-		} else {
-
-			return sumNumbersRec(root.left, "" + val + root.left.data) + sumNumbersRec(root.right,
-				"" + val + root.right.data);
-		}
-	}
-
-	/**
-	 * Another better solution
-	 */
-	int sum = 0;
-	int val = 0;
-	public int sumNumbers2(BinaryTreeNode root) {
-		if(root == null)
-			return 0;
-
-		val = val*10 + root.data;
-
-		if(root.left == null && root.right == null) {
-			sum += val;
-		}
-
-		sumNumbers2(root.left);
-		sumNumbers2(root.right);
-		val = val/10;
-
-		return sum;
 	}
 }
