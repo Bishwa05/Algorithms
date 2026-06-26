@@ -60,4 +60,17 @@ public class DuplicateFileFinder {
         }
         return hexString.toString();
     }
+
+    public static void main(String[] args) {
+        List<FileInfo> files = List.of(
+                new FileInfo("/root/a.txt", "hello"),
+                new FileInfo("/root/b.txt", "world"),
+                new FileInfo("/root/c.txt", "hello"),
+                new FileInfo("/root/d.txt", "hello")
+        );
+
+        List<List<String>> duplicates = findDuplicateFiles(files);
+        System.out.println(duplicates);
+        // Output: [[/root/a.txt, /root/c.txt, /root/d.txt]]
+    }
 }

@@ -40,13 +40,13 @@ public class NQueens
                 return false;
             }
         }
-
+        // This loop checks the diagonal going up and to the left from the current cell.
         for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
             if (board[i][j] == 'Q') {
                 return false;
             }
         }
-
+        // This loop checks the diagonal going down and to the left from the current cell.
         for (int i = row, j = col; i < board.length && j >= 0; i++, j--) {
             if (board[i][j] == 'Q') {
                 return false;

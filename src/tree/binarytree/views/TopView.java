@@ -1,7 +1,7 @@
 package tree.binarytree.views;
 
 
-import tree.binarytree.TreeNode;
+import tree.leetcode.TreeNode;
 
 import java.util.*;
 

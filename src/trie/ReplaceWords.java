@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ReplaceWords {
-    class TrieNode{
+    static class TrieNode{
         public TrieNode[] children;
         boolean isLeaf;
 

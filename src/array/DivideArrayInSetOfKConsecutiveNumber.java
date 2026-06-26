@@ -78,7 +78,7 @@ public class DivideArrayInSetOfKConsecutiveNumber
     }
 
     public static void main(String arg[]){
-        int[] nums = {1,2,3,3,4,4,5,6};
+        int[] nums = {1,2,4,5,6,3,3,4,};
 
         DivideArrayInSetOfKConsecutiveNumber d = new DivideArrayInSetOfKConsecutiveNumber();
         System.out.println(d.isPossibleDivide(nums, 4));

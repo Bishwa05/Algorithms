@@ -1,4 +1,6 @@
-package tree.binarytree;
+package tree.binarytree.pathsum;
+
+import tree.binarytree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,20 +61,7 @@ public class PathSumFromRoot {
 
         }
     }
-    // Fails in test cases
-//    public int findMaxSumPathRec(BinaryTreeNode root){
-//
-//
-//        if(root == null) return 0;
-//
-//        int left = findMaxSumPathRec(root.left);
-//
-//        int right =
-//            findMaxSumPathRec(root.right);
-//
-//        return root.data + ((left > right) ?
-//            left : right);
-//    }
+
 
     public boolean populatePath(TreeNode root, int sum, List<Integer> res){
 

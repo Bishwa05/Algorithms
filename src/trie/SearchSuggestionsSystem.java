@@ -8,16 +8,17 @@ import java.util.List;
  * Leetcode 1268. Search Suggestions System
  * https://leetcode.com/problems/search-suggestions-system/
  */
+// TODO : It needs refactoring.
 public class SearchSuggestionsSystem {
     class Trie {
-        class Node {
+        class TrieNode {
             boolean isWord = false;
-            List<Node> children = Arrays.asList(new Node[26]);
+            List<TrieNode> children = Arrays.asList(new TrieNode[26]);
         };
-        Node Root, curr;
+        TrieNode Root, curr;
         List<String> results;
 
-        void dfsWithPrefix(Node curr, String word) {
+        void dfsWithPrefix(TrieNode curr, String word) {
             if(results.size() ==3) return;
 
             if (curr.isWord) results.add(word);
@@ -29,14 +30,14 @@ public class SearchSuggestionsSystem {
         }
 
         Trie() {
-            Root = new Node();
+            Root = new TrieNode();
         }
 
         void insert(String s) {
             curr = Root;
             for(char c : s.toCharArray()) {
                 if (curr.children.get(c-'a') == null)
-                    curr.children.set(c-'a', new Node());
+                    curr.children.set(c-'a', new TrieNode());
                 curr = curr.children.get(c-'a');
             }
             curr.isWord = true;

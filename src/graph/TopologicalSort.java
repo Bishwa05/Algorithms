@@ -86,58 +86,6 @@ public class TopologicalSort<T> {
      *
      */
 
-    public void topologicalSort(Graph G)
-    {
-
-//        int V =5;
-//        int indegree[] = new int[V];
-//
-//        for (int i = 0; i < V; i++) {
-//            ArrayList<Integer> temp
-//                = (ArrayList<Integer>)adj[i];
-//            for (int node : temp) {
-//                indegree[node]++;
-//            }
-//        }
-//
-//
-//        Queue<Integer> q
-//            = new LinkedList<>();
-//        for (int i = 0; i < V; i++) {
-//            if (indegree[i] == 0)
-//                q.add(i);
-//        }
-//
-//
-//        int cnt = 0;
-//
-//        Vector<Integer> topOrder = new Vector<Integer>();
-//        while (!q.isEmpty()) {
-//
-//            int u = q.poll();
-//            topOrder.add(u);
-//
-//            for (int node : adj[u]) {
-//
-//                if (--indegree[node] == 0)
-//                    q.add(node);
-//            }
-//            cnt++;
-//        }
-//
-//        // Check if there was a cycle
-//        if (cnt != V) {
-//            System.out.println(
-//                "There exists a cycle in the graph");
-//            return;
-//        }
-
-        // Print topological order
-//        for (int i : topOrder) {
-//            System.out.print(i + " ");
-//        }
-    }
-
     public static void main(String args[]){
         Graph<Integer> graph = new Graph<>(true);
         graph.addEdge(1, 3);

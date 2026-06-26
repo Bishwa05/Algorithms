@@ -1,5 +1,7 @@
 package array;
 
+import java.util.Arrays;
+
 public class FindOriginalArrayFromDoubledArray {
     public int[] findOriginalArray(int[] changed) {
 
@@ -36,6 +38,6 @@ public class FindOriginalArrayFromDoubledArray {
     public static void main(String[] args) {
         int[] changed = new int[] {1,3,4,2,6,8};
         FindOriginalArrayFromDoubledArray fOA = new FindOriginalArrayFromDoubledArray();
-        fOA.findOriginalArray(changed);
+        Arrays.stream(fOA.findOriginalArray(changed)).forEach(e -> System.out.println(e));
     }
 }

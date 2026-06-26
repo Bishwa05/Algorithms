@@ -12,7 +12,7 @@ package trie;
  */
 public class WordDictionary {
     TrieNode root;
-    class TrieNode{
+    static class TrieNode {
         boolean isLeaf;
         TrieNode[] children;
 

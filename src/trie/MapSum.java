@@ -21,7 +21,7 @@ import java.util.HashMap;
 public class MapSum {
 
     /** Initialize your data structure here. */
-    class TrieNode{
+    static class TrieNode{
         public int data;
         public TrieNode[] children;
 
@@ -56,7 +56,7 @@ public class MapSum {
         for(int i=0; i<key.length(); i++){
             int index = key.charAt(i)-'a';
             if(curr.children[index]==null){
-                curr.children[index]=new TrieNode();
+                curr.children[index]= new TrieNode();
             }
             curr = curr.children[index];
             curr.data = curr.data+k;
