@@ -37,7 +37,7 @@ public class NumberOfClosedIslands {
 
         visited[i][j] = true;
         // recursively visit all neighboring cells (horizontally & vertically)
-        Boolean isClosed = true;
+        boolean isClosed = true;
         isClosed &= isClosedIslandDFS(matrix, visited, i+1, j);
         isClosed &= isClosedIslandDFS(matrix, visited, i-1, j);
         isClosed &= isClosedIslandDFS(matrix, visited, i, j+1);

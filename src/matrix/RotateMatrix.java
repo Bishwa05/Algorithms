@@ -103,7 +103,7 @@ public class RotateMatrix {
      * mat[0][1] = mat[1][0];
      * mat[1][0] = mat[2][1];
      * mat[2][1] = mat[1][2];
-     * mat[1][2]  = x;
+     * mat[1][2]  = temp;
      *
      *
      *

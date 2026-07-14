@@ -5,7 +5,6 @@ import java.util.Set;
 
 /**
  * You are given a 2D matrix containing only 1s (land) and 0s (water).
- *
  * An island is a connected set of 1s (land) and is surrounded by either an edge or 0s (water). Each cell is considered connected to other cells horizontally or vertically (not diagonally).
  *
  * Two islands are considered the same if and only if they can be translated (not rotated or reflected) to equal each other.
